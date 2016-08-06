@@ -214,18 +214,25 @@ public static class Movement
 		float excitement = 100 / Vector3.Distance (target.transform.position, dancer.transform.position);
 
 		//Calm when together
-		excitement = excitement > 25 ? 0 : excitement;
+		excitement = excitement > 15 ? 0 : excitement;
+
+		//Upright
+		if (feet.onGround)
+		{
+			var rot = Quaternion.FromToRotation (dancer.transform.up, Vector3.up);
+			dancer.AddTorque (new Vector3 (rot.x, rot.y, rot.z) * 40);
+		}
 
 		//Hop
 		if (choice == 0 && feet.onGround)
 		{
-			dancer.AddForce (dancer.mass * 2 * excitement * Vector3.up);
+			dancer.AddForce (dancer.mass * 8 * excitement * Vector3.up);
 		}
 
 		//Spin
 		if (choice == 0 && feet.onGround)
 		{
-			dancer.AddRelativeTorque (dancer.mass * 10 * excitement * Vector3.up);
+			dancer.AddRelativeTorque (dancer.mass * 20 * excitement * Vector3.up);
 		}
 
 		//Skip
@@ -233,8 +240,8 @@ public static class Movement
 		{
 			var dir = target.transform.position - dancer.transform.position;
 
-			dancer.AddForce (dancer.mass * excitement * (Vector3.up));
-			dancer.AddForce (dancer.mass * excitement * (dir));
+			dancer.AddForce (dancer.mass * 2 * excitement * (Vector3.up));
+			dancer.AddForce (dancer.mass * 2 * excitement * (dir));
 		}
 	}
 
@@ -253,7 +260,7 @@ public static class Movement
 		{
 			var dir = victim.transform.position - righteousCondom.transform.position;
 
-			if (dir.sqrMagnitude > 10)
+			if (dir.sqrMagnitude > 40)
 			{
 				dir.y += 2;
 				dir = dir.normalized;
