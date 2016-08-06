@@ -186,43 +186,43 @@ public static class Movement
 		return (target, dancer) => TwinkleToesScript (target, dancer);
 	}
 
-	private static void TwinkleToesScript (GameObject target, Rigidbody dancer)
-	{
-		InteractableObject feet = InteractableObject.Get (dancer.gameObject);
+    private static void TwinkleToesScript (GameObject target, Rigidbody dancer)
+    {
+        InteractableObject feet = InteractableObject.Get (dancer.gameObject);
 
-		int choice = UnityEngine.Random.Range (0, 4);
-		//Supes stoked when close
-		float excitement = 100 / Vector3.Distance (target.transform.position, dancer.transform.position);
+        int choice = UnityEngine.Random.Range (0, 4);
+        //Supes stoked when close
+        float excitement = 100 / Vector3.Distance (target.transform.position, dancer.transform.position);
 
-		//Calm when together
-		excitement = excitement > 50 ? 0 : excitement;
+        //Calm when together
+        excitement = excitement > 50 ? 0 : excitement;
 
-		//Hop
-		if (choice == 0 && feet.onGround)
-		{
-			dancer.AddForce (dancer.mass * 2 * excitement * Vector3.up);
-		}
+        //Hop
+        if (choice == 0 && feet.onGround)
+        {
+            dancer.AddForce (dancer.mass * 2 * excitement * Vector3.up);
+        }
 
-		//Spin
-		if (choice == 0 && feet.onGround)
-		{
-			dancer.AddRelativeTorque (dancer.mass * 10 * excitement * Vector3.up);
-		}
+        //Spin
+        if (choice == 0 && feet.onGround)
+        {
+            dancer.AddRelativeTorque (dancer.mass * 10 * excitement * Vector3.up);
+        }
 
-		//Skip
-		if (choice != 0 && feet.onGround)
-		{
-			var dir = target.transform.position - dancer.transform.position;
+        //Skip
+        if (choice != 0 && feet.onGround)
+        {
+            var dir = target.transform.position - dancer.transform.position;
 
-			dancer.AddForce (dancer.mass * excitement * (Vector3.up));
-			dancer.AddForce (dancer.mass * excitement * (dir));
-		}
-	}
+            dancer.AddForce (dancer.mass * excitement * (Vector3.up));
+            dancer.AddForce (dancer.mass * excitement * (dir));
+        }
+    }
 
-	#endregion
+    #endregion
 
-	#region LubeCannon
+    #region LubeCannon
 
-	#endregion
+    #endregion
 }
 
