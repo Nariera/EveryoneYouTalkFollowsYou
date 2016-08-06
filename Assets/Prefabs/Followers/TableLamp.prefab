@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11478604}
   - 54: {fileID: 5479276}
   - 65: {fileID: 6542362}
+  - 114: {fileID: 11472462}
   m_Layer: 0
   m_Name: TableLamp
   m_TagString: Untagged
@@ -154,6 +155,18 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11472462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b798de54d1759b841ad13d4b6dcae10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Durability: 50
 --- !u!114 &11478604
 MonoBehaviour:
   m_ObjectHideFlags: 1

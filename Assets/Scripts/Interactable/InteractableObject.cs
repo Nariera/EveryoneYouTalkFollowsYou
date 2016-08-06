@@ -16,6 +16,10 @@ public class InteractableObject : MonoBehaviour
     private float LastMovementChange = 0.0f;
     private const float MOVEMENT_INTERVAL_MIN = 1.0f;
 
+    //Skip running physics move if it is this close
+    private const float MOVEMENT_STOP_MIN = 2.0f;
+    private const float MOVEMENT_STOP_MAX = 20.0f;
+
     private MovementScript CurrentMovement;
 
     public bool onGround { get; private set; }
@@ -143,7 +147,9 @@ public class InteractableObject : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        CurrentMovement(Player, Body);
+        float fDistance = Vector3.Distance(Player.transform.position, transform.position);
+        if (fDistance >= MOVEMENT_STOP_MIN && fDistance <= MOVEMENT_STOP_MAX)
+            CurrentMovement(Player, Body);
     }
 
 
