@@ -138,43 +138,7 @@ public class InteractableObject : MonoBehaviour
 	private void FixedUpdate ()
 	{
 		CurrentMovement (Player, Body);
-		//Vector3 v3PlayerLocation = Player.transform.position;
-		//Vector3 v3MovingObjectLocation = gameObject.transform.position;
-		//Vector3 v3Difference = v3PlayerLocation - v3MovingObjectLocation;
-		////Drag Body Script
-		//if (false)
-		//{
-		//    Body.AddForce(v3Difference * 2, ForceMode.Impulse);
-		//}
-		//if(false)
-		//{
-		//    //Jump Script
-		//    float fAngle = 45 * Mathf.Deg2Rad;
-
-		//    Vector3 v3PlanePlayerLocation = new Vector3(v3PlayerLocation.x, 0, v3PlayerLocation.z);
-		//    Vector3 v3PlaneMovingLocation = new Vector3(v3MovingObjectLocation.x, 0, v3MovingObjectLocation.z);
-
-		//    //delta x between two object
-		//    float fGroundDistance = Vector3.Distance(v3PlanePlayerLocation, v3PlaneMovingLocation);
-
-		//    //height distance - y
-		//    float fHeightDistance = v3MovingObjectLocation.y - v3PlayerLocation.y;
-
-		//    float fInitialVelocity = (1 / Mathf.Cos(fAngle)) * Mathf.Sqrt((0.5f * Physics.gravity.magnitude * Mathf.Pow(fGroundDistance, 2)) / (fGroundDistance * Mathf.Tan(fAngle) + fHeightDistance));
-
-		//    Vector3 v3Velocity = new Vector3(0, fInitialVelocity * Mathf.Sin(fAngle), fInitialVelocity * Mathf.Cos(fAngle));
-
-		//    float fAngleDifference = Vector3.Angle(Vector3.forward, v3PlanePlayerLocation - v3PlaneMovingLocation);
-		//    Vector3 v3FinalVelocity = Quaternion.AngleAxis(fAngleDifference, Vector3.up) * v3Velocity;
-		//    Body.AddForce(v3FinalVelocity * Body.mass, ForceMode.Impulse);
-
-		//    LastJump = Time.time;
-		//}
-
-
-
 	}
 
-	private float LastJump = 0f;
 
 }
