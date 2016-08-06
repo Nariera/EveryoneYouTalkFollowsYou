@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LOL : MonoBehaviour
+public class Talk : MonoBehaviour
 {
+
     // Use this for initialization
     void Start()
     {
@@ -12,10 +13,6 @@ public class LOL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<LOL>();
-    }
 
-    void FixedUpdate()
-    {
     }
 }
