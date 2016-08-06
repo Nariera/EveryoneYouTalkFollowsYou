@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798de54d1759b841ad13d4b6dcae10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Durability: 100
+  Durability: 50
 --- !u!114 &898488863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798de54d1759b841ad13d4b6dcae10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Durability: 100
+  Durability: 50
 --- !u!1 &1469680882
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798de54d1759b841ad13d4b6dcae10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Durability: 100
+  Durability: 50
 --- !u!114 &1954947631
 MonoBehaviour:
   m_ObjectHideFlags: 0

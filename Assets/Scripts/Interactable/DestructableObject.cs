@@ -11,7 +11,7 @@ public class DestructableObject : MonoBehaviour
 
     public float Durability = DURABILITY_BASE;
 
-    private const float DURABILITY_BASE = 100.0f;
+    private const float DURABILITY_BASE = 50.0f;
 
     private const float EXPLOSION_FORCE_BASE = 200.0f;
     private const float EXPLOSION_RADIUS_BASE = 5.0f;

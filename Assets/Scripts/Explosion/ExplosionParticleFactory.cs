@@ -26,6 +26,7 @@ public class ExplosionParticleFactory
 
     private const float DISPERSION_STRENGTH = 200f;
     private const float DISPERSION_RADIUS = 5f;
+    private const float DISPERSION_OFFSET = 0.125f;
     private const int PARTICLE_COUNT_BASE = 15;
     private const string PARTICLE_PATH = "Explosion Particle";
 
@@ -48,7 +49,11 @@ public class ExplosionParticleFactory
         for(int i = 1; i <= nParticleCount; i++)
         {
             ExplosionParticle oParticle = GetParticle();
-            oParticle.transform.position = a_v3Position;
+            Vector3 v3ParticlePosition = a_v3Position;
+            v3ParticlePosition.x += UnityEngine.Random.Range(-DISPERSION_OFFSET, DISPERSION_OFFSET);
+            v3ParticlePosition.y += UnityEngine.Random.Range(-DISPERSION_OFFSET, DISPERSION_OFFSET);
+            v3ParticlePosition.z += UnityEngine.Random.Range(-DISPERSION_OFFSET, DISPERSION_OFFSET);
+            oParticle.transform.position = v3ParticlePosition;
             oParticle.gameObject.SetActive(true);
             oParticle.Body.AddExplosionForce(DISPERSION_STRENGTH, a_v3Position, DISPERSION_RADIUS);
         }
