@@ -194,19 +194,19 @@ public static class Movement
 		//Hop
 		if (choice == 0)
 		{
-			dancer.AddForce (dancer.mass * Vector3.up);
+			dancer.AddForce (dancer.mass / 2 * Vector3.up);
 		}
 
 		//Spin
 		if (choice == 0)
 		{
-			dancer.AddRelativeTorque (dancer.mass / 4 * Vector3.up);
+			dancer.AddRelativeTorque (dancer.mass / 2 * Vector3.up);
 		}
 
 		//Skip
 		if (choice != 0)
 		{
-			dancer.AddForce (dancer.mass / 2 * Vector3.Cross (Vector3.up, Vector3.Cross (dancer.transform.position, target.transform.position)));
+			dancer.AddForce (dancer.mass / 4 * Vector3.Cross (Vector3.up, Vector3.Cross (dancer.transform.position, target.transform.position)));
 		}
 	}
 
