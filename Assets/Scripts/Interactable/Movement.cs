@@ -183,30 +183,35 @@ public static class Movement
 
 	public static MovementScript TwinkleToes ()
 	{
-
 		return (target, dancer) => TwinkleToesScript (target, dancer);
 	}
 
 	private static void TwinkleToesScript (GameObject target, Rigidbody dancer)
 	{
+		InteractableObject feet;
+
 		int choice = UnityEngine.Random.Range (0, 4);
+		float excitement = UnityEngine.Random.Range (0, Vector3.Distance (target.transform.position, dancer.transform.position));
 
 		//Hop
-		if (choice == 0)
+		if (choice == 0 && feet.onGround)
 		{
-			dancer.AddForce (dancer.mass / 2 * Vector3.up);
+			dancer.AddForce (dancer.mass / 2 * excitement * Vector3.up);
 		}
 
 		//Spin
-		if (choice == 0)
+		if (choice == 0 && feet.onGround)
 		{
-			dancer.AddRelativeTorque (dancer.mass / 2 * Vector3.up);
+			dancer.AddRelativeTorque (dancer.mass * 2 * excitement * Vector3.up);
 		}
 
 		//Skip
-		if (choice != 0)
+		if (choice != 0 && feet.onGround)
 		{
-			dancer.AddForce (dancer.mass / 4 * Vector3.Cross (Vector3.up, Vector3.Cross (dancer.transform.position, target.transform.position)));
+			var dir = target.transform.position - dancer.transform.position;
+
+			dancer.AddForce (dancer.mass / 4 * Mathf.Sqrt (excitement) * (Vector3.up));
+			dancer.AddForce (dancer.mass / 4 * Mathf.Sqrt (excitement) * (dir));
 		}
 	}
 
