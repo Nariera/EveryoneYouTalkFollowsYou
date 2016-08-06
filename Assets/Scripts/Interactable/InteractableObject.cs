@@ -26,40 +26,32 @@ public class InteractableObject : MonoBehaviour
 			Debug.Log (oInteractable.name + " is following!");
 			oInteractable.enabled = true;
 
-            //Add other tracking code if you want;
-        }
-    }
-    
-    public static InteractableObject Get(GameObject a_goTarget)
-    {
-        InteractableObject oInteractable;
+			//Add other tracking code if you want;
+		}
+	}
 
-        if (library.TryGetValue(a_goTarget, out oInteractable))
-        {
-            return oInteractable;
-        }
-        else
-        {
-            return null;
-        }
-    }
-    //These two lines are to assign code that allow easy retrieval of this component
-    private void Awake()
-    {
-        if (library.ContainsKey(this.gameObject))
-        {
-            //get rid of it,
-            library.Remove(this.gameObject);
-        }
-        library.Add(this.gameObject, this);       
-    }
-    private void OnDestroy()
-    {
-        if (library.ContainsKey(this.gameObject))
-        {
-            library.Remove(this.gameObject);
-        }
-    }
+	public static InteractableObject Get (GameObject a_goTarget)
+	{
+		InteractableObject oInteractable;
+
+		if (library.TryGetValue (a_goTarget, out oInteractable))
+		{
+			return oInteractable;
+		} else
+		{
+			return null;
+		}
+	}
+	//These two lines are to assign code that allow easy retrieval of this component
+	private void Awake ()
+	{
+		if (library.ContainsKey (this.gameObject))
+		{
+			//get rid of it,
+			library.Remove (this.gameObject);
+		}
+		library.Add (this.gameObject, this);       
+	}
 
 	private void OnDestroy ()
 	{
