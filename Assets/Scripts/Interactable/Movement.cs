@@ -39,47 +39,46 @@ public static class Movement
 		return kyMovementPool;
 	}
 
-    /// <summary>
-    /// Get a movement script
-    /// </summary>
-    /// <param name="a_sMethodName"></param>
-    /// <returns></returns>
-    public static MovementScript GetScript(string a_sMethodName = "")
-    {
-        Func<MovementScript> oReturnDelegate;
-        if (a_sMethodName != "" && MovementPool.TryGetValue(a_sMethodName, out oReturnDelegate))
-        {
-            return oReturnDelegate();
-        }
-        else
-        {
-            //TODO: THIS CODE IS TERRIBLE
-            oReturnDelegate = MovementPool.Values.First();
-            int nChosenKey = UnityEngine.Random.Range(0, MovementPool.Count);
-            int nCurrentKey = 0;
-            foreach (var oDelegate in MovementPool.Values)
-            {
-                oReturnDelegate = oDelegate;
-                if (nCurrentKey == nChosenKey)
-                {
-                    break;
-                }
-                nCurrentKey++;
-            }
-            return oReturnDelegate();
-        }
-    }
-    //Doesn't work
-    //private static IEnumerable<Func<MovementScript>> GetRandomValue()
-    //{
-    //    System.Random rand = new System.Random();
-    //    List<Func<MovementScript>> oValues = Enumerable.ToList(MovementPool.Values);
-    //    int nSize = MovementPool.Count;
-    //    while (true)
-    //    {
-    //        yield return oValues[rand.Next(nSize)];
-    //    }
-    //}
+	/// <summary>
+	/// Get a movement script
+	/// </summary>
+	/// <param name="a_sMethodName"></param>
+	/// <returns></returns>
+	public static MovementScript GetScript (string a_sMethodName = "")
+	{
+		Func<MovementScript> oReturnDelegate;
+		if (a_sMethodName != "" && MovementPool.TryGetValue (a_sMethodName, out oReturnDelegate))
+		{
+			return oReturnDelegate ();
+		} else
+		{
+			//TODO: THIS CODE IS TERRIBLE
+			oReturnDelegate = MovementPool.Values.First ();
+			int nChosenKey = UnityEngine.Random.Range (0, MovementPool.Count);
+			int nCurrentKey = 0;
+			foreach (var oDelegate in MovementPool.Values)
+			{
+				oReturnDelegate = oDelegate;
+				if (nCurrentKey == nChosenKey)
+				{
+					break;
+				}
+				nCurrentKey++;
+			}
+			return oReturnDelegate ();
+		}
+	}
+	//Doesn't work
+	//private static IEnumerable<Func<MovementScript>> GetRandomValue()
+	//{
+	//    System.Random rand = new System.Random();
+	//    List<Func<MovementScript>> oValues = Enumerable.ToList(MovementPool.Values);
+	//    int nSize = MovementPool.Count;
+	//    while (true)
+	//    {
+	//        yield return oValues[rand.Next(nSize)];
+	//    }
+	//}
 
 	#region Updates
 
@@ -186,43 +185,64 @@ public static class Movement
 		return (target, dancer) => TwinkleToesScript (target, dancer);
 	}
 
-    private static void TwinkleToesScript (GameObject target, Rigidbody dancer)
-    {
-        InteractableObject feet = InteractableObject.Get (dancer.gameObject);
+	private static void TwinkleToesScript (GameObject target, Rigidbody dancer)
+	{
+		InteractableObject feet = InteractableObject.Get (dancer.gameObject);
 
-        int choice = UnityEngine.Random.Range (0, 4);
-        //Supes stoked when close
-        float excitement = 100 / Vector3.Distance (target.transform.position, dancer.transform.position);
+		int choice = UnityEngine.Random.Range (0, 4);
+		//Supes stoked when close
+		float excitement = 100 / Vector3.Distance (target.transform.position, dancer.transform.position);
 
-        //Calm when together
-        excitement = excitement > 50 ? 0 : excitement;
+		//Calm when together
+		excitement = excitement > 25 ? 0 : excitement;
 
-        //Hop
-        if (choice == 0 && feet.onGround)
-        {
-            dancer.AddForce (dancer.mass * 2 * excitement * Vector3.up);
-        }
+		//Hop
+		if (choice == 0 && feet.onGround)
+		{
+			dancer.AddForce (dancer.mass * 2 * excitement * Vector3.up);
+		}
 
-        //Spin
-        if (choice == 0 && feet.onGround)
-        {
-            dancer.AddRelativeTorque (dancer.mass * 10 * excitement * Vector3.up);
-        }
+		//Spin
+		if (choice == 0 && feet.onGround)
+		{
+			dancer.AddRelativeTorque (dancer.mass * 10 * excitement * Vector3.up);
+		}
 
-        //Skip
-        if (choice != 0 && feet.onGround)
-        {
-            var dir = target.transform.position - dancer.transform.position;
+		//Skip
+		if (choice != 0 && feet.onGround)
+		{
+			var dir = target.transform.position - dancer.transform.position;
 
-            dancer.AddForce (dancer.mass * excitement * (Vector3.up));
-            dancer.AddForce (dancer.mass * excitement * (dir));
-        }
-    }
+			dancer.AddForce (dancer.mass * excitement * (Vector3.up));
+			dancer.AddForce (dancer.mass * excitement * (dir));
+		}
+	}
 
-    #endregion
+	#endregion
 
-    #region LubeCannon
+	#region LubeCannon
 
-    #endregion
+	public static MovementScript LubeCannon ()
+	{
+		return (victim, righteousCondom) => LubeCannonScript (victim, righteousCondom);
+	}
+
+	private static void LubeCannonScript (GameObject victim, Rigidbody righteousCondom)
+	{
+		if (InteractableObject.Get (righteousCondom.gameObject).onGround && righteousCondom.velocity.sqrMagnitude < 400)
+		{
+			var dir = victim.transform.position - righteousCondom.transform.position;
+
+			if (dir.sqrMagnitude > 10)
+			{
+				dir.y += 2;
+				dir = dir.normalized;
+
+				righteousCondom.AddForce (dir * righteousCondom.mass * 10, ForceMode.Impulse);
+			}
+		}
+	}
+
+	#endregion
 }
 
