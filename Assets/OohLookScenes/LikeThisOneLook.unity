@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 638748834}
   Body: {fileID: 1020325697}
+  MovementType: 
 --- !u!23 &1020325692
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -437,6 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 638748834}
   Body: {fileID: 1190130708}
+  MovementType: 
 --- !u!65 &1190130707
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -594,6 +596,10 @@ Prefab:
     - target: {fileID: 11427538, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132608, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
