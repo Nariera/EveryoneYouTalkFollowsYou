@@ -21,7 +21,7 @@ public class Talk : MonoBehaviour
 		{
 			RaycastHit rcHit;
 			//Raycast from center of camera view to a max distance          
-			if (Physics.Raycast (playerView.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.width / 2)), out rcHit, MAX_INTERACT_DISTANCE))
+			if (Physics.Raycast (playerView.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2)), out rcHit, MAX_INTERACT_DISTANCE))
 			{
 				//Talk Here;
 				GameObject goTarget = rcHit.collider.gameObject;
