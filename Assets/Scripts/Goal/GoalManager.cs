@@ -12,6 +12,8 @@ public class GoalManager : MonoBehaviour
 	public List<Goal> cancelledGoals = new List<Goal> ();
 	public List<Goal> completedGoals = new List<Goal> ();
 
+	public Goal mainGoal;
+
 	/**delegates called when goals do shit, if we need those -P */
 	public System.Action<Goal> onGoalAdded, onGoalCancel, onGoalComplete;
 
@@ -59,6 +61,11 @@ public class GoalManager : MonoBehaviour
 		//You know, delegate ish -P
 		if (onGoalComplete != null)
 			onGoalComplete.Invoke (goal);
+	}
+
+	void Start ()
+	{
+		AddNewGoal (mainGoal);
 	}
 
 	public int TallyCompletedPoints ()
