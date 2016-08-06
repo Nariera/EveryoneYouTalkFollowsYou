@@ -27,7 +27,20 @@ public class InteractableObject : MonoBehaviour
             //Add other tracking code if you want;
         }
     }
+    
+    public static InteractableObject Get(GameObject a_goTarget)
+    {
+        InteractableObject oInteractable;
 
+        if (library.TryGetValue(a_goTarget, out oInteractable))
+        {
+            return oInteractable;
+        }
+        else
+        {
+            return null;
+        }
+    }
     //These two lines are to assign code that allow easy retrieval of this component
     private void Awake()
     {
