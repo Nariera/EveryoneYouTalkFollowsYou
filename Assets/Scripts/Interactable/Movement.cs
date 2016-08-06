@@ -13,8 +13,12 @@ public delegate void MovementScript (GameObject a_oTarget,Rigidbody a_oBody);
 
 public static class Movement
 {
-	private static float MIN_JUMPING_INTERVAL = 2;
-	private static float MAX_JUMPING_INTERVAL = 5;
+	private const float JUMPING_INTERVAL_MIN = 0.2f;
+	private const float JUMPING_INTERVAL_MAX = 1.0f;
+    private const float JUMPING_ANGLE_MIN = 30f;
+    private const float JUMPING_ANGLE_MAX = 85f;
+    private const float JUMPING_DIST_MIN = 0.5f;
+    private const float JUMPING_DIST_MAX = 0.9f;
 
 	private static Dictionary<GameObject, float> LastUpdateLibrary = new Dictionary<GameObject, float> ();
 
@@ -136,8 +140,8 @@ public static class Movement
 
 	public static MovementScript JumpToward ()
 	{
-		float fAngle = UnityEngine.Random.Range (45, 90) * Mathf.Deg2Rad;
-		float fJumpInterval = UnityEngine.Random.Range (MIN_JUMPING_INTERVAL, MAX_JUMPING_INTERVAL);
+		float fAngle = UnityEngine.Random.Range (JUMPING_ANGLE_MIN, JUMPING_ANGLE_MAX) * Mathf.Deg2Rad;
+		float fJumpInterval = UnityEngine.Random.Range (JUMPING_INTERVAL_MIN, JUMPING_INTERVAL_MAX);
 		return (a_oTarget, a_oBody) => JumpTowardScript (a_oTarget, a_oBody, fJumpInterval, fAngle);
 	}
 
@@ -155,6 +159,9 @@ public static class Movement
 			//delta x between two object
 			float fGroundDistance = Vector3.Distance (v3PlanePlayerLocation, v3PlaneMovingLocation);
 
+            //Random distance between player and itself
+            fGroundDistance *= UnityEngine.Random.Range(JUMPING_DIST_MIN, JUMPING_DIST_MAX);
+
 			//height distance - y
 			float fHeightDistance = v3MovingObjectLocation.y - v3PlayerLocation.y;
 
@@ -164,9 +171,22 @@ public static class Movement
 
 			float fAngleDifference = Vector3.Angle (Vector3.forward, v3PlanePlayerLocation - v3PlaneMovingLocation);
 			Vector3 v3FinalVelocity = Quaternion.AngleAxis (fAngleDifference, Vector3.up) * v3Velocity;
+            //this in theory should hit toward us...but we want to re-tweek it towards us. y is correct tho
+            Vector3 v3Difference = Vector3.Normalize(v3PlanePlayerLocation - v3PlaneMovingLocation);
+            //Vector3 v3PlaneVelocity = new Vector3(v3FinalVelocity.x * v3Difference.x, 0, v3FinalVelocity.z * v3Difference.z);
+            //apply motion
+            if((v3FinalVelocity.x > 0 && v3Difference.x < 0) || (v3FinalVelocity.x < 0 && v3Difference.x > 0))
+            {
+                v3FinalVelocity.x *= -1;
+            }
+            if ((v3FinalVelocity.y > 0 && v3Difference.y < 0) || (v3FinalVelocity.y < 0 && v3Difference.y > 0))
+            {
+                v3FinalVelocity.y *= -1;
+            }
+            //v3FinalVelocity.x = v3PlaneVelocity.x;
+            //v3FinalVelocity.z = v3PlaneVelocity.z;
 
-			//apply motion
-			a_oBody.AddForce (v3FinalVelocity * a_oBody.mass, ForceMode.Impulse);
+            a_oBody.AddForce (v3FinalVelocity * a_oBody.mass, ForceMode.Impulse);
 
 			//update the last updated time
 			UpdateTime (a_oBody.gameObject);

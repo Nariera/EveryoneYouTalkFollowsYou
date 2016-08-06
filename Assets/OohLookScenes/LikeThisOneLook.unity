@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 638748834}
   Body: {fileID: 1190130708}
-  MovementType: 
+  MovementType: JumpToward
 --- !u!65 &1190130707
 BoxCollider:
   m_ObjectHideFlags: 0
