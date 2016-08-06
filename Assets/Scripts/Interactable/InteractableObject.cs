@@ -48,10 +48,16 @@ public class InteractableObject : MonoBehaviour
 
     private void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Body = GetComponent<Rigidbody>();
         //find player if player is null
         if(Player == null)
         {
 
+        }
+        if(Body == null)
+        {
+            Debug.Log(name + " does not have a rigidbody attached to it.");
         }
     }
 
