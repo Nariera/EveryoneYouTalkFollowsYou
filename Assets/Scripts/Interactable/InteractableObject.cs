@@ -11,14 +11,21 @@ public class InteractableObject : MonoBehaviour
     private Rigidbody body;
     private static Dictionary<GameObject, InteractableObject> library = new Dictionary<GameObject, InteractableObject>();
 
-    public static InteractableObject Get(GameObject a_goTarget)
+    public static void Follow(GameObject a_goTarget)
     {
-        return null;
+        InteractableObject oInteractable;
+        
+        if(library.TryGetValue(a_goTarget, out oInteractable) && !oInteractable.isActiveAndEnabled)
+        {
+            Debug.Log(oInteractable.name + " is following!");
+            oInteractable.enabled = true;
+        }
     }
 
+
+    //These two lines are to assign code that allow easy retrieval of this component
     private void Awake()
     {
-        Debug.Log("Aywake");
         if (library.ContainsKey(this.gameObject))
         {
             //get rid of it,
@@ -26,7 +33,6 @@ public class InteractableObject : MonoBehaviour
         }
         library.Add(this.gameObject, this);       
     }
-
     private void OnDestroy()
     {
         if (library.ContainsKey(this.gameObject))
@@ -39,20 +45,20 @@ public class InteractableObject : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        Debug.Log("Object Start");
+        
     }
 
     /// <summary>
-    /// We need to enable this later
+    /// Use this to call any On Activation events
     /// </summary>
     private void OnEnable()
     {
-        //Randomize Movement
+        //Randomize Movement?
     }
 
     private void OnDisable()
     {
-        Debug.Log("On Disable");
+        
     }
     // Update is called once per frame
     private void Update()
@@ -60,12 +66,16 @@ public class InteractableObject : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Movement Script Here
+    /// </summary>
     private void FixedUpdate()
     {
+        //Drag Body Script
         Vector3 v3PlayerLocation = TestPlayer.transform.position;
 
         Vector3 v3Difference = v3PlayerLocation - gameObject.transform.position;
 
-        body.AddForce(v3Difference.normalized);
+        body.AddForce(v3Difference * 2);
     }
 }
