@@ -10,6 +10,12 @@ public class InteractableObject : MonoBehaviour
     [SerializeField]
     private Rigidbody Body;
 
+    public string MovementType;
+    private string _LastMovementType;
+
+    private float LastMovementChange = 0.0f;
+    private const float MOVEMENT_INTERVAL_MIN = 1.0f;
+
     private MovementScript CurrentMovement;
 
     //Use this to get the interactableobject
@@ -18,8 +24,8 @@ public class InteractableObject : MonoBehaviour
     public static void Follow(GameObject a_goTarget)
     {
         InteractableObject oInteractable;
-        
-        if(library.TryGetValue(a_goTarget, out oInteractable) && !oInteractable.isActiveAndEnabled)
+
+        if (library.TryGetValue(a_goTarget, out oInteractable) && !oInteractable.isActiveAndEnabled)
         {
             Debug.Log(oInteractable.name + " is following!");
             oInteractable.enabled = true;
@@ -27,7 +33,7 @@ public class InteractableObject : MonoBehaviour
             //Add other tracking code if you want;
         }
     }
-    
+
     public static InteractableObject Get(GameObject a_goTarget)
     {
         InteractableObject oInteractable;
@@ -49,7 +55,7 @@ public class InteractableObject : MonoBehaviour
             //get rid of it,
             library.Remove(this.gameObject);
         }
-        library.Add(this.gameObject, this);       
+        library.Add(this.gameObject, this);
     }
     private void OnDestroy()
     {
@@ -63,12 +69,13 @@ public class InteractableObject : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         Body = GetComponent<Rigidbody>();
+
         //find player if player is null
-        if(Player == null)
+        if (Player == null)
         {
 
         }
-        if(Body == null)
+        if (Body == null)
         {
             Debug.Log(name + " does not have a rigidbody attached to it.");
         }
@@ -79,17 +86,32 @@ public class InteractableObject : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        CurrentMovement = Movement.GetScript();
+        CurrentMovement = null; //remove references
+
+        CurrentMovement = Movement.GetScript(MovementType);
+
+        _LastMovementType = MovementType;
     }
 
     private void OnDisable()
     {
-        
+
     }
     // Update is called once per frame
     private void Update()
     {
-        
+        CheckMovementType();
+    }
+
+    private void CheckMovementType()
+    {
+        if(MovementType != _LastMovementType && Time.time - LastMovementChange > MOVEMENT_INTERVAL_MIN)
+        {
+            CurrentMovement = null;
+            CurrentMovement = Movement.GetScript(MovementType);
+            _LastMovementType = MovementType;
+            LastMovementChange = Time.time;
+        }
     }
 
     /// <summary>

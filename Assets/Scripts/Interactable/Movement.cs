@@ -57,7 +57,6 @@ public static class Movement
             oReturnDelegate = MovementPool.Values.First();
             int nChosenKey = UnityEngine.Random.Range(0, MovementPool.Count);
             int nCurrentKey = 0;
-            Debug.Log(nChosenKey);
             foreach (var oDelegate in MovementPool.Values)
             {
                 oReturnDelegate = oDelegate;
