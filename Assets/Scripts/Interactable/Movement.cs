@@ -66,9 +66,12 @@ public static class Movement
 				if (nCurrentKey == nChosenKey)
 				{
 					break;
+                    
 				}
 				nCurrentKey++;
 			}
+            
+
 			return oReturnDelegate ();
 		}
 	}

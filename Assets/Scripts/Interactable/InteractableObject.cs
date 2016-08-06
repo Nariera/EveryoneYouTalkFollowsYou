@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class InteractableObject : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject Player;
+    [SerializeField]
+    private GameObject Player;
 
-	[SerializeField]
-	private Rigidbody Body;
+    [SerializeField]
+    private Rigidbody Body;
 
     public string MovementType;
     private string _LastMovementType;
@@ -18,10 +18,10 @@ public class InteractableObject : MonoBehaviour
 
     private MovementScript CurrentMovement;
 
-	public bool onGround { get; private set; }
+    public bool onGround { get; private set; }
 
-	//Use this to get the interactableobject
-	private static Dictionary<GameObject, InteractableObject> library = new Dictionary<GameObject, InteractableObject> ();
+    //Use this to get the interactableobject
+    private static Dictionary<GameObject, InteractableObject> library = new Dictionary<GameObject, InteractableObject>();
 
     public static void Follow(GameObject a_goTarget)
     {
@@ -76,28 +76,34 @@ public class InteractableObject : MonoBehaviour
         if (Player == null)
         {
 
-		}
-		if (Body == null)
-		{
-			Debug.Log (name + " does not have a rigidbody attached to it.");
-		}
-	}
+        }
+        if (Body == null)
+        {
+            Debug.Log(name + " does not have a rigidbody attached to it.");
+        }
+    }
 
-	void OnCollisionEnter (Collision coll)
-	{
-		if (coll.collider.tag == "Terrain")
-		{
-			onGround = true;
-		}
-	}
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.tag == "Terrain")
+        {
+            onGround = true;
+        }
+        else
+        {
+            //something not the ground
+            //let's calculate a threshold
+            Collider oTest = gameObject.GetComponent<Collider>();
+        }
+    }
 
-	void OnCollisionExit (Collision coll)
-	{
-		if (coll.collider.tag == "Terrain")
-		{
-			onGround = false;
-		}
-	}
+    void OnCollisionExit(Collision coll)
+    {
+        if (coll.collider.tag == "Terrain")
+        {
+            onGround = false;
+        }
+    }
 
     /// <summary>
     /// Use this to call any On Activation events
@@ -123,7 +129,7 @@ public class InteractableObject : MonoBehaviour
 
     private void CheckMovementType()
     {
-        if(MovementType != _LastMovementType && Time.time - LastMovementChange > MOVEMENT_INTERVAL_MIN)
+        if (MovementType != _LastMovementType && Time.time - LastMovementChange > MOVEMENT_INTERVAL_MIN)
         {
             CurrentMovement = null;
             CurrentMovement = Movement.GetScript(MovementType);
@@ -132,13 +138,13 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
-	/// <summary>
-	/// Movement Script Here
-	/// </summary>
-	private void FixedUpdate ()
-	{
-		CurrentMovement (Player, Body);
-	}
+    /// <summary>
+    /// Movement Script Here
+    /// </summary>
+    private void FixedUpdate()
+    {
+        CurrentMovement(Player, Body);
+    }
 
 
 }
