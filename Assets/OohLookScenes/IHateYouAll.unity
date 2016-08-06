@@ -127,7 +127,7 @@ MonoBehaviour:
   activeGoals: []
   cancelledGoals: []
   completedGoals: []
-  mainGoal: {fileID: 0}
+  mainGoal: {fileID: 2136315711}
 --- !u!1 &476877520
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 0}
+    - {fileID: 11445328, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &631532533
@@ -715,7 +715,7 @@ Prefab:
       propertyPath: m_Name
       value: Main Goal
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
+    - target: {fileID: 11445328, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: goalText
       value: Get to Work
       objectReference: {fileID: 0}
@@ -1083,3 +1083,9 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c,
     type: 2}
   m_PrefabInternal: {fileID: 1096357511}
+--- !u!114 &2136315711 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11445328, guid: dd83bbe0ab9936749a383a69d86be61c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1096357511}
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
