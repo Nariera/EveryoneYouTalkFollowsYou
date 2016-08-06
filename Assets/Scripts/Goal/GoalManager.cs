@@ -14,6 +14,10 @@ public class GoalManager : MonoBehaviour
 
 	public Goal mainGoal;
 
+	public GameObject subGoalCollection;
+
+	List<GameObject> goalUIPool = new List<GameObject> ();
+
 	/**delegates called when goals do shit, if we need those -P */
 	public System.Action<Goal> onGoalAdded, onGoalCancel, onGoalComplete;
 
@@ -25,6 +29,12 @@ public class GoalManager : MonoBehaviour
 			return;
 		}
 		activeGoals.Add (goal);
+
+		//Make sure the goal has a (fresh) associated UI element
+		if (goal.associatedUIObject == null || goal.associatedUIObject.activeSelf)
+			goal.associatedUIObject = GetGoalObject ();
+
+		goal.UpdateText ();
 
 		//If any methods to do when a goal is added, do them here -P
 		if (onGoalAdded != null)
@@ -42,6 +52,12 @@ public class GoalManager : MonoBehaviour
 		cancelledGoals.Add (goal);
 		goal.completed = true;
 
+		//Anim time -P
+		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Cancelled");
+
+		//Queue return to pool -P
+		StartCoroutine (ReturnToGoalObjectPool (goal.associatedUIObject, 5));
+
 		//If any methods to call when goal is cancelled, do 'em, do 'em hard -P
 		if (onGoalCancel != null)
 			onGoalCancel.Invoke (goal);
@@ -58,10 +74,39 @@ public class GoalManager : MonoBehaviour
 		completedGoals.Add (goal);
 		goal.completed = true;
 
+		//Do the anim! -P
+		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Completed");
+
+		//Queue return to pool -P
+		StartCoroutine (ReturnToGoalObjectPool (goal.associatedUIObject, 5));
+
 		//You know, delegate ish -P
 		if (onGoalComplete != null)
 			onGoalComplete.Invoke (goal);
 	}
+
+	/**Pool management -P */
+	GameObject GetGoalObject ()
+	{
+		if (goalUIPool.Exists (obj => !obj.activeSelf))
+			return goalUIPool.Find (obj => !obj.activeSelf);
+		else
+		{
+			var newObj = (GameObject)Instantiate (Resources.Load ("Goal UI Unit"));
+			newObj.transform.SetParent (subGoalCollection.transform);
+
+			return newObj;
+		}
+	}
+
+	/**Moar pool management -P */
+	IEnumerator ReturnToGoalObjectPool (GameObject obj, float time)
+	{
+		yield return new WaitForSeconds (time);
+
+		obj.SetActive (false);
+	}
+
 
 	void Start ()
 	{
@@ -71,12 +116,10 @@ public class GoalManager : MonoBehaviour
 	public int TallyCompletedPoints ()
 	{
 		int totalPoints = 0;
-//        foreach(Goal goal in CompletedGoals)
-//        {
-//            totalPoints++;
-//        }
-		//Easier: (unless you want to do something else w/ each goal object when tallying)
-		totalPoints = completedGoals.Count;
+		foreach (Goal goal in completedGoals)
+		{
+			totalPoints += goal.pointValue;
+		}
 
 		return totalPoints;
 	}

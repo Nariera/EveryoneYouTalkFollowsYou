@@ -7,8 +7,11 @@ public class Goal : MonoBehaviour
 	public string goalText = "Hey this is Placeholder text";
 	public int pointValue = 1;
 
-	void Start ()
+	public GameObject associatedUIObject;
+
+	public void UpdateText ()
 	{
-		GetComponentInChildren<UnityEngine.UI.Text> ().text = goalText;
+		if (associatedUIObject)
+			associatedUIObject.GetComponentInChildren<UnityEngine.UI.Text> ().text = goalText;
 	}
 }
