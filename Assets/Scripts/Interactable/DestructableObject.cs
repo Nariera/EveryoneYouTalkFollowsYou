@@ -62,7 +62,11 @@ public sealed class DestructableObject : MonoBehaviour
 	{
 		if (Durability < 0 && !exploded)
 		{
-			exploded = true;
+            GoalEvents.Instance.Raise(new DestroyEvent()
+            {
+                Name = gameObject.name
+            });
+            exploded = true;
 			var particle =	GetComponentInChildren<ParticleSystem> ();
 			particle.transform.SetParent (ParticleManager.pm.transform);
 			particle.Play ();
@@ -78,7 +82,8 @@ public sealed class DestructableObject : MonoBehaviour
 
 		yield return new WaitUntil (() => target.isStopped);
 
-		Destroy (target.gameObject);
+        
+        Destroy (target.gameObject);
 		Destroy (gameObject);
 	}
 
@@ -103,7 +108,8 @@ public sealed class DestructableObject : MonoBehaviour
 		}
 		ExplosionParticleFactory.Instance.Explode (transform.position, Size);
 
-		GameObject.Destroy (this.gameObject);
+       
+        GameObject.Destroy (this.gameObject);
 	}
 
 	private void OnCollisionEnter (Collision a_oCollision)

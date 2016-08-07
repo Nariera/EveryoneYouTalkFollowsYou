@@ -3001,6 +3001,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1531924317}
   - 114: {fileID: 1531924316}
+  - 114: {fileID: 1531924318}
   m_Layer: 0
   m_Name: GoalManager
   m_TagString: Untagged
@@ -3038,6 +3039,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &1531924318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1531924315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e853f61bf975e644ea1ede19313e4160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1540538714 stripped
 Transform:
   m_PrefabParentObject: {fileID: 446212, guid: 94f187e872f69464b96c988a2377c96c, type: 2}

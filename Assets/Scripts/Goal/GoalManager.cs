@@ -15,14 +15,14 @@ public class GoalManager : MonoBehaviour
 
     private void Update()
     {
-        LastAddedGoal += Time.deltaTime;
-        if(LastAddedGoal > 5 && PremadeList.Count > 0)
-        {
-            Goal oTest = PremadeList.Dequeue();
-            oTest.IsListening = true;
-            AddNewGoal(oTest);
-            LastAddedGoal = 0;
-        }
+        //LastAddedGoal += Time.deltaTime;
+        //if(LastAddedGoal > 5 && PremadeList.Count > 0)
+        //{
+        //    Goal oTest = PremadeList.Dequeue();
+        //    oTest.IsListening = true;
+        //    AddNewGoal(oTest);
+        //    LastAddedGoal = 0;
+        //}
     }
     #region GenerateGoal
     private void GeneratePremadeGoal()

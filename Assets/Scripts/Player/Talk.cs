@@ -63,6 +63,7 @@ public class Talk : MonoBehaviour
 			//Run Talk Script if player is interacting
 			if (Input.GetKeyUp ("e") || Input.GetMouseButtonDown (0))
 			{
+                GoalEvents.Instance.Raise(new TalkEvent());
 				//Talk Here;
 				GameObject goTarget = rcHit.collider.gameObject;
 
