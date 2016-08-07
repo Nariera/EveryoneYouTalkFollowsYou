@@ -72,10 +72,9 @@ public class GoalMetric : MonoBehaviour
 		{
 			if (TotalTalkUpdate > NO_TALKING_MIN)
 			{
-				Goal oNoTalk = new Goal () {
-					goalText = "More talking less thinking!",
-					pointValue = 100
-				};
+				Goal oNoTalk = gameObject.AddComponent<Goal> ();
+				oNoTalk.goalText = "More talking less thinking!";
+				oNoTalk.pointValue = 100;
 				GoalManager.gm.AddNewGoal (oNoTalk);
 				AddTimer (Time.time + TIMER_DELAY, oNoTalk);
 				TalkDisqualified = true;
@@ -91,10 +90,9 @@ public class GoalMetric : MonoBehaviour
 			if (DestroyedTotal > DESTROYED_MIN)
 			{
                 
-				Goal oDestroy = new Goal () {
-					goalText = "Explosions...Explosions everywhere.",
-					pointValue = 100
-				};
+				Goal oDestroy = gameObject.AddComponent<Goal> ();
+				oDestroy.goalText = "Explosions...Explosions everywhere.";
+				oDestroy.pointValue = 100;
 				GoalManager.gm.AddNewGoal (oDestroy);
 				AddTimer (Time.time + TIMER_DELAY, oDestroy);
 				DestroyDisqualified = true;
