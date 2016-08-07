@@ -74,7 +74,7 @@ public class GoalMetric : MonoBehaviour
 			{
 				Goal oNoTalk = gameObject.AddComponent<Goal> ();
 				oNoTalk.goalText = "More talking less thinking!";
-				oNoTalk.pointValue = 100;
+				oNoTalk.pointValue = 0;
 				GoalManager.gm.AddNewGoal (oNoTalk);
 				AddTimer (Time.time + TIMER_DELAY, oNoTalk);
 				TalkDisqualified = true;
@@ -92,7 +92,7 @@ public class GoalMetric : MonoBehaviour
                 
 				Goal oDestroy = gameObject.AddComponent<Goal> ();
 				oDestroy.goalText = "Explosions...Explosions everywhere.";
-				oDestroy.pointValue = 100;
+				oDestroy.pointValue = 0;
 				GoalManager.gm.AddNewGoal (oDestroy);
 				AddTimer (Time.time + TIMER_DELAY, oDestroy);
 				DestroyDisqualified = true;
@@ -106,7 +106,7 @@ public class GoalMetric : MonoBehaviour
 			{
 				Goal oGoal = gameObject.AddComponent<Goal> ();
 				oGoal.goalText = "Man's Best Friend";
-				oGoal.pointValue = 100;
+				oGoal.pointValue = 10;
 				GoalManager.gm.AddNewGoal (oGoal);
 				AddTimer (Time.time + TIMER_DELAY, oGoal);
 				DogDisqualified = true;
