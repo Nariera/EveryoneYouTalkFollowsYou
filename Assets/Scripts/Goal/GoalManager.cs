@@ -14,8 +14,6 @@ public class GoalManager : MonoBehaviour
 	private List<Goal> CancelledGoal = new List<Goal> ();
 	private List<Goal> CompletedGoal = new List<Goal> ();
 
-	public GameObject Test;
-
 
 	private void Update ()
 	{

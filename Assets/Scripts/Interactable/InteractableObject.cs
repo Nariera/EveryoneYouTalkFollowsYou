@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class InteractEvent : GoalEvent
 {
-    public InteractableObject Source { get; set; }
+	public InteractableObject Source { get; set; }
 }
 
 public sealed class InteractableObject : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Player;
+	[SerializeField]
+	private GameObject Player;
 
 	[SerializeField]
 	private Rigidbody Body;
@@ -21,9 +21,9 @@ public sealed class InteractableObject : MonoBehaviour
 	private float LastMovementChange = 0.0f;
 	private const float MOVEMENT_INTERVAL_MIN = 1.0f;
 
-    //Skip running physics move if it is this close
-    private const float MOVEMENT_STOP_MIN = 2.0f;
-    private const float MOVEMENT_STOP_MAX = 40.0f;
+	//Skip running physics move if it is this close
+	private const float MOVEMENT_STOP_MIN = 2.0f;
+	private const float MOVEMENT_STOP_MAX = 40.0f;
 
 	private MovementScript CurrentMovement;
 
@@ -38,17 +38,15 @@ public sealed class InteractableObject : MonoBehaviour
 
 		if (library.TryGetValue (a_goTarget, out oInteractable) && !oInteractable.isActiveAndEnabled)
 		{
-			Debug.Log (oInteractable.name + " is following!");
 			oInteractable.enabled = true;
 
-            GoalEvents.Instance.Raise(new InteractEvent()
-            {
-                Source = oInteractable
-            });
+			GoalEvents.Instance.Raise (new InteractEvent () {
+				Source = oInteractable
+			});
 
-            //Add other tracking code if you want;
-        }
-    }
+			//Add other tracking code if you want;
+		}
+	}
 
 	public static InteractableObject Get (GameObject a_goTarget)
 	{
