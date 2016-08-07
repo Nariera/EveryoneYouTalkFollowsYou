@@ -1,8 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Goal : MonoBehaviour
 {
+	public enum GoalAction
+	{
+		Interact,
+		//Save has no win condition (yet ? maybe steal from goal metric w/ population left)
+		Save,
+		Kill,
+		LookAt,
+		Avoid
+	}
+
 	public event System.Action<Goal> OnSatisfied, OnFailed, OnReveal;
 
 	protected void Satisfy ()
@@ -28,6 +39,11 @@ public class Goal : MonoBehaviour
 			OnReveal (this);
 			//Clear it
 			OnReveal = null;
+		}
+
+		foreach (var t in goalsThisClosesOnReveal)
+		{
+			GoalManager.gm.CancelGoal (t);
 		}
 	}
 
@@ -55,24 +71,63 @@ public class Goal : MonoBehaviour
 
 	public GameObject specificTarget;
 
-	DestructableObject targFail;
-	InteractableObject targSucc;
-	TrackableObject targSeen;
+	public GoalAction action;
+
+	[Tooltip ("This goal is off limits until these fuckers get completed.")] //TODO
+	public List<Goal> prerequisiteGoals = new List<Goal> ();
+	[Tooltip ("Those fuckers get cancelled when this appears.")]
+	public List<Goal> goalsThisClosesOnReveal = new List<Goal> ();
+
+	DestructableObject targDestr;
+	InteractableObject targInter;
+	TrackableObject targTrack;
 
 	void Start ()
 	{
 		if (specificTarget)
 		{
-			targFail = specificTarget.GetComponent<DestructableObject> ();
-			targSucc = specificTarget.GetComponent<InteractableObject> ();
-			targSeen = specificTarget.GetComponent<TrackableObject> ();
+			targDestr = specificTarget.GetComponent<DestructableObject> ();
+			targInter = specificTarget.GetComponent<InteractableObject> ();
+			targTrack = specificTarget.GetComponent<TrackableObject> ();
 
-			if (targFail)
-				targFail.destroyed += Fail;
-			if (targSucc)
-				InteractableObject.activated += CheckForSatisfy;
-			if (targSeen)
-				targSeen.seen += Reveal;
+			switch (action)
+			{
+			case GoalAction.Interact:
+				if (targDestr)
+					targDestr.destroyed += Fail;
+				if (targInter)
+					InteractableObject.activated += CheckForSatisfy;
+				if (targTrack)
+					targTrack.seen += Reveal;
+				break;
+			case GoalAction.Kill:
+				if (targDestr)
+					targDestr.destroyed += Satisfy;
+				if (targTrack)
+					targTrack.seen += Reveal;
+				break;
+			case GoalAction.Save:
+				if (targDestr)
+					targDestr.destroyed += Fail;
+				if (targTrack)
+					targTrack.seen += Reveal;
+				break;
+			case GoalAction.LookAt:
+				if (targTrack)
+				{
+					targTrack.seen += Reveal;
+					targTrack.seen += Satisfy;
+				}
+				break;
+			case GoalAction.Avoid:
+				if (targTrack)
+				{
+					targTrack.seen += Reveal;
+					targTrack.seen += Fail;
+				}
+				break;
+			}
+
 		}
 	}
 

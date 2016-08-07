@@ -219,6 +219,10 @@ public class GoalManager : MonoBehaviour
 		{
 			totalPoints += goal.pointValue;
 		}
+		foreach (Goal goal in cancelledGoals)
+		{
+			totalPoints -= goal.pointValue;
+		}
 
 		return totalPoints;
 	}
