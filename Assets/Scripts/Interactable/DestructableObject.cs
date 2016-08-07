@@ -67,7 +67,9 @@ public sealed class DestructableObject : MonoBehaviour
                 Name = gameObject.name
             });
             exploded = true;
-			var particle =	GetComponentInChildren<ParticleSystem> ();
+            var audio = GetComponentInChildren<AudioSource>();
+            audio.Play();
+            var particle =	GetComponentInChildren<ParticleSystem> ();
 			particle.transform.SetParent (ParticleManager.pm.transform);
 			particle.Play ();
 

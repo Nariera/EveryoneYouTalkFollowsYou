@@ -26,7 +26,7 @@ public class FollowerSounds : MonoBehaviour {
             initialCollision = false;
             return;
         }
-        if (audio.isPlaying || collideClips == null || collideClips.Length > 0)
+        if (audio.isPlaying || collideClips == null || collideClips.Length == 0)
             return;
 
 
