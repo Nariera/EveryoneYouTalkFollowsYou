@@ -88,7 +88,9 @@ public sealed class DestructableObject : MonoBehaviour
 
 	System.Collections.IEnumerator DestroyOnParticleLoss (ParticleSystem target)
 	{
-		GetComponent<Renderer> ().enabled = false;
+		var rend = GetComponent<Renderer> ();
+		if (rend)
+			rend.enabled = false;
 
 		yield return new WaitUntil (() => target.isStopped);
 
