@@ -1802,6 +1802,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8276578, guid: cc2374d9579591040be9901393672a13, type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc2374d9579591040be9901393672a13, type: 2}
   m_IsPrefabParent: 0
@@ -2239,6 +2243,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3a6400fc804f3b94a8a8b1b97469f20a, type: 2}
+    - target: {fileID: 8276578, guid: cc2374d9579591040be9901393672a13, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc2374d9579591040be9901393672a13, type: 2}
   m_IsPrefabParent: 0
@@ -3639,6 +3647,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
+      propertyPath: FailToClick
+      value: 
+      objectReference: {fileID: 8300000, guid: b445033f40211be4999e0fd29ee50708, type: 3}
+    - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
+      propertyPath: successClick
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f35b28f094339f46ac7400947df5197, type: 3}
+    - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
+      propertyPath: failToClickClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c5f01a48f43d3cc44ba83769c02e6a03, type: 3}
+    - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
+      propertyPath: successClickClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dfa080a6c3c21c54a8d5f935c062b99a, type: 3}
     m_RemovedComponents:
     - {fileID: 11498166, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
@@ -3725,8 +3749,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a48d0ef74999e469116ee17749fd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completedClip: {fileID: 8300000, guid: 1fbb68765ae5c0a4794c18f304ddc136, type: 3}
+  completedClip: {fileID: 8300000, guid: 1ad676298246a604883988ecfbdbfb55, type: 3}
   cancelClip: {fileID: 8300000, guid: 3d28ad758bf702d44abd801ba3dbf580, type: 3}
+  addGoalClip: {fileID: 8300000, guid: 7cdef5f37e0b65f448fceb5212598c39, type: 3}
   allGoals: []
   activeGoals: []
   cancelledGoals: []

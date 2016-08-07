@@ -76,6 +76,7 @@ public class GoalManager : MonoBehaviour
 
     public AudioClip completedClip;
     public AudioClip cancelClip;
+    public AudioClip addGoalClip;
 
     //Static ref. -P
     public static GoalManager gm;
@@ -108,6 +109,8 @@ public class GoalManager : MonoBehaviour
             goal.associatedUIObject = GetGoalObject();
 
         goal.UpdateText();
+        if (addGoalClip != null)
+            SoundManager.instance.PlaySingle(addGoalClip);
 
         //If any methods to do when a goal is added, do them here -P
         if (onGoalAdded != null)
