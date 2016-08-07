@@ -12,7 +12,7 @@ GameObject:
   - 136: {fileID: 13680214}
   - 114: {fileID: 11431034}
   - 114: {fileID: 11467668}
-  - 114: {fileID: 11493520}
+  - 114: {fileID: 11498166}
   m_Layer: 0
   m_Name: FollowFPSController
   m_TagString: Player
@@ -563,7 +563,7 @@ MonoBehaviour:
   rigidbodyFirstPersonController: {fileID: 11431034}
   StrideInterval: 4
   RunningStrideLengthen: 0.722
---- !u!114 &11493520
+--- !u!114 &11498166
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

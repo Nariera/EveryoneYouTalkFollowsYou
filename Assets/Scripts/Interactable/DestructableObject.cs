@@ -62,14 +62,14 @@ public sealed class DestructableObject : MonoBehaviour
 	{
 		if (Durability < 0 && !exploded)
 		{
-            GoalEvents.Instance.Raise(new DestroyEvent()
-            {
-                Name = gameObject.name
-            });
-            exploded = true;
-            var audio = GetComponentInChildren<AudioSource>();
-            audio.Play();
-            var particle =	GetComponentInChildren<ParticleSystem> ();
+			GoalEvents.Instance.Raise (new DestroyEvent () {
+				Name = gameObject.name
+			});
+			exploded = true;
+			var audio = GetComponentInChildren<AudioSource> ();
+			if (audio)
+				audio.Play ();
+			var particle =	GetComponentInChildren<ParticleSystem> ();
 			particle.transform.SetParent (ParticleManager.pm.transform);
 			particle.Play ();
 
