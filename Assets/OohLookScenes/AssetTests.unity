@@ -618,6 +618,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &671098842 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: bca59ff9ae864364887f47a85ad6ffcf, type: 3}
+  m_PrefabInternal: {fileID: 452833168}
+--- !u!64 &671098846
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671098842}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300002, guid: bca59ff9ae864364887f47a85ad6ffcf, type: 3}
 --- !u!1001 &697783329
 Prefab:
   m_ObjectHideFlags: 0
@@ -660,6 +676,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc2374d9579591040be9901393672a13, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &744649251 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: bca59ff9ae864364887f47a85ad6ffcf, type: 3}
+  m_PrefabInternal: {fileID: 452833168}
+--- !u!64 &744649252
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744649251}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: bca59ff9ae864364887f47a85ad6ffcf, type: 3}
 --- !u!1001 &872538935
 Prefab:
   m_ObjectHideFlags: 0
@@ -1016,6 +1048,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cfd9df5eca10fa40a8575c552d312de, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1466000286 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 182148, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
+  m_PrefabInternal: {fileID: 1480359636}
+--- !u!114 &1466000287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1466000286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1480359636
 Prefab:
   m_ObjectHideFlags: 0
