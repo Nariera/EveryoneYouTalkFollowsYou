@@ -320,5 +320,29 @@ public static class Movement
 	}
 
 	#endregion
+
+
+	#region DoABarrelRoll
+
+	public static MovementScript BarrelRoll ()
+	{
+		return (fox, falco) => BarrelRollScript (fox, falco);
+	}
+
+	private static void BarrelRollScript (GameObject fox, Rigidbody falco)
+	{
+		InteractableObject spaceship = InteractableObject.Get (falco.gameObject);
+
+		var aim = (fox.transform.position - falco.transform.position);
+
+		if (spaceship.onGround && aim.sqrMagnitude > 100)
+		{
+			aim.y++;
+			falco.AddForce (aim * UnityEngine.Random.Range (10, 20) * falco.mass);
+			falco.AddRelativeTorque (falco.mass * 1000 * Vector3.forward, ForceMode.Impulse);
+		}
+	}
+
+	#endregion
 }
 
