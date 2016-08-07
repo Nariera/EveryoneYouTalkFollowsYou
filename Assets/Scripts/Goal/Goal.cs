@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Goal : MonoBehaviour
 {
-	public bool IsListening { get; set; }
-
 	public event System.Action<Goal> OnSatisfied;
 
 	protected void Satisfy ()
@@ -26,8 +24,6 @@ public class Goal : MonoBehaviour
 	public bool completed = false, cancelled = false;
 	public string goalText = "Hey this is Placeholder text";
 	public int pointValue = 1;
-
-
 
 	public GameObject associatedUIObject;
 
