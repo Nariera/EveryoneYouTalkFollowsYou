@@ -14,7 +14,7 @@ public sealed class InteractableObject : MonoBehaviour
 	private GameObject Player;
 
 	[SerializeField]
-	private Rigidbody Body;
+	public Rigidbody Body;
 
 	public string MovementType;
 	private string _LastMovementType;

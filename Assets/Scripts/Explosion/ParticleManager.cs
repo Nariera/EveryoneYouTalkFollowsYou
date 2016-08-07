@@ -7,25 +7,32 @@ public class ParticleManager : MonoBehaviour
 
 	public GameObject particlesPrefab;
 	public GameObject meshGroup;
-
+    public GameObject SomeBox;
 	void Start ()
 	{
 		//Assign a particle renderer for each MeshRenderer in world
-		foreach (var t in meshGroup.GetComponentsInChildren<MeshRenderer>())
+		foreach (var t in meshGroup.GetComponentsInChildren<DestructableObject>())
 		{
-			if (t.GetComponent<DestructableObject> () != null)
-				CreateAndAssignParticlesTo (t);
+			CreateAndAssignParticlesTo (t.gameObject);
 		}
 	}
 
 	/** Need a particle for boom boom? Buy one here for free. -P */
-	public void CreateAndAssignParticlesTo (MeshRenderer explodey)
+	public void CreateAndAssignParticlesTo (GameObject explodey)
 	{
+
 		GameObject particles = (GameObject)Instantiate (particlesPrefab);
 		particles.transform.SetParent (explodey.transform);
 		particles.transform.localPosition = Vector3.zero;
 		var shape = particles.GetComponent<ParticleSystem> ().shape;
-		shape.meshRenderer = explodey;
+        MeshRenderer renderer = explodey.GetComponent<MeshRenderer>();
+        if(renderer != null)
+        {
+            shape.meshRenderer = renderer;
+        } else
+        {
+            shape.meshRenderer = SomeBox.GetComponent<MeshRenderer>();
+        }
 	}
 
 	void Awake ()
