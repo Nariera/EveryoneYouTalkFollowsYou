@@ -19,9 +19,17 @@ public class Goal : MonoBehaviour
 	protected void Satisfy ()
 	{
 		//We check for prereq goals being done before we ever consider satisfying or even revealing a locked off one
-		if (OnSatisfied != null && !prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
+		if (!prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
 		{
-			OnSatisfied (this);
+			if (OnSatisfied != null)
+			{
+				OnSatisfied (this);
+			}
+			
+			foreach (var t in goalsThisClosesOnSatisfy)
+			{
+				GoalManager.gm.CancelGoal (t);
+			}
 		}
 	}
 
@@ -37,22 +45,25 @@ public class Goal : MonoBehaviour
 	protected void Reveal ()
 	{
 		//See Satisfy for notes
-		if (OnReveal != null && !prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
+		if (!prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
 		{
-			OnReveal (this);
-			//Clear it
-			OnReveal = null;
-		}
+			if (OnReveal != null)
+			{
+				OnReveal (this);
+				//Clear it
+				OnReveal = null;
+			}
 
-		foreach (var t in goalsThisClosesOnReveal)
-		{
-			GoalManager.gm.CancelGoal (t);
+			foreach (var t in goalsThisClosesOnReveal)
+			{
+				GoalManager.gm.CancelGoal (t);
+			}
 		}
 	}
 
 	protected void CheckForSatisfy (InteractableObject candidate)
 	{
-		if (candidate.gameObject == specificTarget)
+		if (specificTargets.Contains (candidate.gameObject))
 		{
 			Satisfy ();
 		}
@@ -72,7 +83,8 @@ public class Goal : MonoBehaviour
 
 	public GameObject associatedUIObject;
 
-	public GameObject specificTarget;
+	[Tooltip ("Each target can fulfill the events of the goal.")]
+	public List<GameObject> specificTargets = new List<GameObject> ();
 
 	public GoalAction action;
 
@@ -80,6 +92,8 @@ public class Goal : MonoBehaviour
 	public List<Goal> prerequisiteGoals = new List<Goal> ();
 	[Tooltip ("Those fuckers get cancelled when this appears.")]
 	public List<Goal> goalsThisClosesOnReveal = new List<Goal> ();
+	[Tooltip ("Options locked.")]
+	public List<Goal> goalsThisClosesOnSatisfy = new List<Goal> ();
 
 	DestructableObject targDestr;
 	InteractableObject targInter;
@@ -87,11 +101,16 @@ public class Goal : MonoBehaviour
 
 	void Start ()
 	{
-		if (specificTarget)
+		//Set delegates
+		foreach (var t in specificTargets)
 		{
-			targDestr = specificTarget.GetComponent<DestructableObject> ();
-			targInter = specificTarget.GetComponent<InteractableObject> ();
-			targTrack = specificTarget.GetComponent<TrackableObject> ();
+			//Ignore null mistakes
+			if (t == null)
+				continue;
+
+			targDestr = t.GetComponent<DestructableObject> ();
+			targInter = t.GetComponent<InteractableObject> ();
+			targTrack = t.GetComponent<TrackableObject> ();
 
 			switch (action)
 			{

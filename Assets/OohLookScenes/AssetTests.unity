@@ -141,6 +141,61 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d58f58901003f748876f8d5a013a3c1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &46433398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 46433399}
+  - 114: {fileID: 46433400}
+  m_Layer: 0
+  m_Name: 'Goal: Investigate Bird p3'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &46433399
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 46433398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 6
+--- !u!114 &46433400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 46433398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: There is no bird in the bushes
+  pointValue: -1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 223043111}
+  - {fileID: 430229974}
+  - {fileID: 1724637612}
+  - {fileID: 736811454}
+  - {fileID: 1822911646}
+  action: 3
+  prerequisiteGoals:
+  - {fileID: 1132367885}
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!224 &78794669 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c,
@@ -150,6 +205,58 @@ RectTransform:
 Transform:
   m_PrefabParentObject: {fileID: 491082, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
   m_PrefabInternal: {fileID: 428295057}
+--- !u!1 &90886409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 90886410}
+  - 114: {fileID: 90886411}
+  m_Layer: 0
+  m_Name: 'Goal: Tea Party'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90886410
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 90886409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 7
+--- !u!114 &90886411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 90886409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: You're not in Wonderland, Alice
+  pointValue: -1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 152281509}
+  - {fileID: 1990056599}
+  - {fileID: 1354863898}
+  action: 3
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!4 &91855229 stripped
 Transform:
   m_PrefabParentObject: {fileID: 409322, guid: cc2374d9579591040be9901393672a13, type: 2}
@@ -196,12 +303,14 @@ MonoBehaviour:
   completed: 0
   cancelled: 0
   goalText: Fuck goats
-  pointValue: 1
+  pointValue: 3
   associatedUIObject: {fileID: 0}
-  specificTarget: {fileID: 982233579}
+  specificTargets:
+  - {fileID: 982233579}
   action: 2
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!4 &100006518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462304, guid: 7d58f58901003f748876f8d5a013a3c1, type: 2}
@@ -302,6 +411,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 409322, guid: cc2374d9579591040be9901393672a13, type: 2}
   m_PrefabInternal: {fileID: 194321818}
+--- !u!1 &152281509 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 129604, guid: ac7cdb29ba8e5dd43a35731d8b26d7a1, type: 2}
+  m_PrefabInternal: {fileID: 613373274}
 --- !u!1001 &157158758
 Prefab:
   m_ObjectHideFlags: 0
@@ -578,6 +691,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &223043111 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148894, guid: 94f187e872f69464b96c988a2377c96c, type: 2}
+  m_PrefabInternal: {fileID: 1549168205}
 --- !u!1001 &231633960
 Prefab:
   m_ObjectHideFlags: 0
@@ -837,10 +954,12 @@ MonoBehaviour:
   goalText: Oh! Check the mail
   pointValue: 1
   associatedUIObject: {fileID: 0}
-  specificTarget: {fileID: 1246819251}
+  specificTargets:
+  - {fileID: 1246819251}
   action: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!1001 &384737334
 Prefab:
   m_ObjectHideFlags: 0
@@ -1161,6 +1280,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &430229974 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 126842, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
+  m_PrefabInternal: {fileID: 1842930902}
 --- !u!4 &430235366 stripped
 Transform:
   m_PrefabParentObject: {fileID: 491082, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
@@ -1485,7 +1608,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 478364, guid: 63d421a7cb1da304b9afe6bbcfeba912, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 250.6
+      value: 265.79
       objectReference: {fileID: 0}
     - target: {fileID: 478364, guid: 63d421a7cb1da304b9afe6bbcfeba912, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1493,7 +1616,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478364, guid: 63d421a7cb1da304b9afe6bbcfeba912, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 280.051
+      value: 305.3
       objectReference: {fileID: 0}
     - target: {fileID: 478364, guid: 63d421a7cb1da304b9afe6bbcfeba912, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1718,6 +1841,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &736811454 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148894, guid: 94f187e872f69464b96c988a2377c96c, type: 2}
+  m_PrefabInternal: {fileID: 872538935}
 --- !u!1 &744649251 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: bca59ff9ae864364887f47a85ad6ffcf, type: 3}
@@ -2292,6 +2419,56 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 009fe3b667492e941b30f9de02e79b04, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1003312043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1003312044}
+  - 114: {fileID: 1003312045}
+  m_Layer: 0
+  m_Name: 'Goal: Kiddie Pool'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1003312044
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003312043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 8
+--- !u!114 &1003312045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003312043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Those neighbor kids don't need that pool as much as you do
+  pointValue: 1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 1217438967}
+  action: 0
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!1 &1046689250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2655,61 @@ MonoBehaviour:
   m_Spacing: -15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
+--- !u!1 &1132367883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1132367884}
+  - 114: {fileID: 1132367885}
+  m_Layer: 0
+  m_Name: 'Goal: Investigate Bird p2'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1132367884
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1132367883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 5
+--- !u!114 &1132367885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1132367883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Find the bird in the bushes
+  pointValue: 1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 223043111}
+  - {fileID: 430229974}
+  - {fileID: 1724637612}
+  - {fileID: 736811454}
+  - {fileID: 1822911646}
+  action: 0
+  prerequisiteGoals:
+  - {fileID: 2016762790}
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!4 &1150056468 stripped
 Transform:
   m_PrefabParentObject: {fileID: 465134, guid: ac7cdb29ba8e5dd43a35731d8b26d7a1, type: 2}
@@ -2528,6 +2760,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 448414, guid: 8c39b392a821be042a409707fcb541ad, type: 2}
   m_PrefabInternal: {fileID: 1422105123}
+--- !u!1 &1217438967 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 182968, guid: a68944819b10d4d47937a74156899848, type: 2}
+  m_PrefabInternal: {fileID: 901907093}
 --- !u!1001 &1222584998
 Prefab:
   m_ObjectHideFlags: 0
@@ -2537,7 +2773,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 246.7759
+      value: 244.53
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2545,7 +2781,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 283.65005
+      value: 280.78
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2570,6 +2806,56 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1233697173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1233697174}
+  - 114: {fileID: 1233697175}
+  m_Layer: 0
+  m_Name: 'Goal: Ignore Puppy'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1233697174
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233697173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 10
+--- !u!114 &1233697175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233697173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Ignore the Puppy
+  pointValue: 1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 2136666197}
+  action: 4
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!1001 &1246819250
 Prefab:
   m_ObjectHideFlags: 0
@@ -2641,10 +2927,11 @@ MonoBehaviour:
   goalText: Get to Work
   pointValue: 1
   associatedUIObject: {fileID: 1304985539}
-  specificTarget: {fileID: 0}
+  specificTargets: []
   action: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!4 &1312449295 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431874, guid: 18bf92b6c9bf246428256c4a644da60d, type: 2}
@@ -2653,6 +2940,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 499282, guid: 419cc0728eaca0f4abeba0c0f751166c, type: 2}
   m_PrefabInternal: {fileID: 2119803164}
+--- !u!1 &1354863898 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 129604, guid: ac7cdb29ba8e5dd43a35731d8b26d7a1, type: 2}
+  m_PrefabInternal: {fileID: 2124109790}
 --- !u!4 &1362185509 stripped
 Transform:
   m_PrefabParentObject: {fileID: 485722, guid: a68944819b10d4d47937a74156899848, type: 2}
@@ -3184,6 +3475,14 @@ Transform:
   - {fileID: 379285560}
   - {fileID: 2005494072}
   - {fileID: 98356072}
+  - {fileID: 1876819894}
+  - {fileID: 2016762789}
+  - {fileID: 1132367884}
+  - {fileID: 46433399}
+  - {fileID: 90886410}
+  - {fileID: 1003312044}
+  - {fileID: 1622225573}
+  - {fileID: 1233697174}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!114 &1531924318
@@ -3252,6 +3551,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94f187e872f69464b96c988a2377c96c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1554847168 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 177982, guid: cc2374d9579591040be9901393672a13, type: 2}
+  m_PrefabInternal: {fileID: 697783329}
 --- !u!4 &1580714121 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462304, guid: 7d58f58901003f748876f8d5a013a3c1, type: 2}
@@ -3352,6 +3655,56 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18bf92b6c9bf246428256c4a644da60d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1622225572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1622225573}
+  - 114: {fileID: 1622225574}
+  m_Layer: 0
+  m_Name: 'Goal: Fuck Those Kids'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1622225573
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622225572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 9
+--- !u!114 &1622225574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622225572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Nah, you don't need it, either
+  pointValue: 3
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 1217438967}
+  action: 2
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!1001 &1630176636
 Prefab:
   m_ObjectHideFlags: 0
@@ -3638,6 +3991,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 491082, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
   m_PrefabInternal: {fileID: 467534007}
+--- !u!1 &1724637612 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 126842, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
+  m_PrefabInternal: {fileID: 875567606}
 --- !u!1001 &1743808039
 Prefab:
   m_ObjectHideFlags: 0
@@ -3754,6 +4111,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 426708, guid: 009fe3b667492e941b30f9de02e79b04, type: 2}
   m_PrefabInternal: {fileID: 2001989015}
+--- !u!1 &1822911646 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 126842, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
+  m_PrefabInternal: {fileID: 384737334}
 --- !u!4 &1834544574 stripped
 Transform:
   m_PrefabParentObject: {fileID: 491082, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
@@ -3850,6 +4211,61 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 446212, guid: 94f187e872f69464b96c988a2377c96c, type: 2}
   m_PrefabInternal: {fileID: 1754329657}
+--- !u!1 &1876819893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1876819894}
+  - 114: {fileID: 1876819895}
+  m_Layer: 0
+  m_Name: 'Goal: Drive Car'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1876819894
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876819893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 3
+--- !u!114 &1876819895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876819893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Drive to work?
+  pointValue: 3
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 1554847168}
+  action: 0
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal:
+  - {fileID: 379285561}
+  - {fileID: 2005494073}
+  goalsThisClosesOnSatisfy:
+  - {fileID: 2016762790}
+  - {fileID: 1132367885}
+  - {fileID: 1003312045}
 --- !u!4 &1879608933 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462304, guid: 7d58f58901003f748876f8d5a013a3c1, type: 2}
@@ -4201,6 +4617,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 446212, guid: 94f187e872f69464b96c988a2377c96c, type: 2}
   m_PrefabInternal: {fileID: 1549168205}
+--- !u!1 &1990056599 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 120876, guid: a7bfa9704ee5cde4f803c3405d6f120c, type: 2}
+  m_PrefabInternal: {fileID: 1175175372}
 --- !u!4 &1990200776 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462304, guid: 7d58f58901003f748876f8d5a013a3c1, type: 2}
@@ -4291,11 +4711,67 @@ MonoBehaviour:
   goalText: Say Hi to the puppy!
   pointValue: 1
   associatedUIObject: {fileID: 0}
-  specificTarget: {fileID: 2136666197}
+  specificTargets:
+  - {fileID: 2136666197}
   action: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal:
   - {fileID: 379285561}
+  goalsThisClosesOnSatisfy: []
+--- !u!1 &2016762788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2016762789}
+  - 114: {fileID: 2016762790}
+  m_Layer: 0
+  m_Name: 'Goal: Investigate Bird p1'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2016762789
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016762788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 4
+--- !u!114 &2016762790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016762788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Is there a bird in the bushes?
+  pointValue: -1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 223043111}
+  - {fileID: 430229974}
+  - {fileID: 1724637612}
+  - {fileID: 736811454}
+  - {fileID: 1822911646}
+  action: 3
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!1001 &2032508249
 Prefab:
   m_ObjectHideFlags: 0

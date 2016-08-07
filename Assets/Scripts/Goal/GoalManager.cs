@@ -95,9 +95,8 @@ public class GoalManager : MonoBehaviour
 	/**Call this when you're ready to put the goal on the UI, not when you want a goal to track*/
 	public void AddNewGoal (Goal goal)
 	{
-		if (goal.completed)
+		if (goal.completed || goal.cancelled)
 		{
-			Debug.LogError ("You tried to ADD goal:" + goal.goalText + " when it was already completed");
 			return;
 		}
 		activeGoals.Add (goal);
@@ -115,9 +114,8 @@ public class GoalManager : MonoBehaviour
 
 	public void CancelGoal (Goal goal)
 	{
-		if (goal.completed)
+		if (goal.completed || goal.cancelled)
 		{
-			Debug.LogError ("You tried to CANCEL goal:" + goal.goalText + " when it was already completed");
 			return;
 		}
 		activeGoals.Remove (goal);
@@ -133,9 +131,8 @@ public class GoalManager : MonoBehaviour
 
 	public void CompleteGoal (Goal goal)
 	{
-		if (goal.completed)
+		if (goal.completed || goal.cancelled)
 		{
-			Debug.LogError ("You tried to COMPLETE goal:" + goal.goalText + " when it was already completed");
 			return;
 		}
 		activeGoals.Remove (goal);
