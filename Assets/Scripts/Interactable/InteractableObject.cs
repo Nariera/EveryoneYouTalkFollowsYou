@@ -41,7 +41,6 @@ public sealed class InteractableObject : MonoBehaviour
 
 		if (library.TryGetValue (a_goTarget, out oInteractable) && !oInteractable.isActiveAndEnabled)
 		{
-			Debug.Log (oInteractable.name + " is following!");
 			oInteractable.enabled = true;
 			if (activated != null)
 				activated.Invoke (oInteractable);

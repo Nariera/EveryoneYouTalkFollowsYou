@@ -77,13 +77,13 @@ public class Talk : MonoBehaviour
 			}
 		} else if (cursor)
 		{
-			if (lerp >= 0)
-			{
+			if (lerp > 0)
 				lerp -= Time.deltaTime;
+			if (lerp < 0)
+				lerp = 0;
 
-				cursorRect.localScale = Vector3.one * (2 - lerp) / 2;
-				cursor.color = Color.white;
-			}
+			cursorRect.localScale = Vector3.one * (2 - lerp) / 2;
+			cursor.color = Color.white;
 		}
 	}
 }
