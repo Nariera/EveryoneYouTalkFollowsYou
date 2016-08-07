@@ -1105,6 +1105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
-  goalText: Hey this is Placeholder text
+  goalText: Get to Work
   pointValue: 1
   associatedUIObject: {fileID: 2136315709}
