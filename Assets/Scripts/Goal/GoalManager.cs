@@ -4,39 +4,50 @@ using System.Collections.Generic;
 
 public class GoalManager : MonoBehaviour
 {
-	private float LastRandomQuest = 0.0f;
-	private float NextRandomQuest = 0.0f;
-
-	private const float QUEST_RANDOM_MIN = 20.0f;
-	private const float QUEST_RANDOM_MAX = 40.0f;
-
-	private List<Goal> ActiveGoal = new List<Goal> ();
-	private List<Goal> CancelledGoal = new List<Goal> ();
-	private List<Goal> CompletedGoal = new List<Goal> ();
+    private Stack<Goal> PremadeList = new Stack<Goal>();
+    private Stack<Goal> BorrowedList = new Stack<Goal>();
 
 	public GameObject Test;
 
+    [SerializeField]
+    private float LastAddedGoal = 0.0f;
 
-	private void Update ()
+    private void Update()
+    {
+        LastAddedGoal += Time.deltaTime;
+        if(LastAddedGoal > 5 && BorrowedList.Count > 0)
+        {
+            Goal oTest = BorrowedList.Pop();
+            AddNewGoal(oTest);
+            LastAddedGoal = 0;
+        }
+    }
+    private void GeneratePremadeGoal()
+    {
+
+    }
+
+	private void GenerateBorrowedGoal ()
 	{
-		//something something something
-	}
-
-	private void GenerateGoal ()
-	{
-
-	}
+        var BorrowedPrefab = Resources.LoadAll<GameObject>("BorrowedFollowers");
+        foreach (var oBorrowedPrefab in BorrowedPrefab)
+        {
+            InteractGoal oBorrowedGoal = new InteractGoal(oBorrowedPrefab.name)
+            {
+                completed = false,
+                pointValue = Random.Range(1, 1000),
+                goalText = "Interact with " + oBorrowedPrefab.name
+            };
+            oBorrowedGoal.OnSatisfied += GoalSatified;
+            BorrowedList.Push(oBorrowedGoal);
+        }
+        
+    }
 
 	private void GoalSatified (Goal a_oGoal)
-	{
-		Debug.Log ("Goal Satisfied");
+    { 
 		a_oGoal.OnSatisfied -= GoalSatified; //shouldn't error since there's no other way it can get here
-		//we check if it is active quest
-		if (ActiveGoal.Contains (a_oGoal))
-		{
-			ActiveGoal.Remove (a_oGoal);
-			CompletedGoal.Add (a_oGoal);
-		}
+        CompleteGoal(a_oGoal);
 	}
     
 
@@ -146,7 +157,9 @@ public class GoalManager : MonoBehaviour
 	void Start ()
 	{
 		AddNewGoal (mainGoal);
-	}
+        GenerateBorrowedGoal();
+
+    }
 
 	public int TallyCompletedPoints ()
 	{

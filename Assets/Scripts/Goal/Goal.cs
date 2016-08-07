@@ -3,11 +3,6 @@ using System.Collections;
 
 public class Goal : MonoBehaviour
 {
-    public bool Completed { get; set; }
-    public string GoalText { get; set; }
-    public int Points { get; set; }
-
-    public GameObject UI { get; set; }
 
     public event System.Action<Goal> OnSatisfied;
 

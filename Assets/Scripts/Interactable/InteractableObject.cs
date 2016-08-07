@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class InteractEvent : GoalEvent
 {
-    public InteractableObject Source { get; set; }
+    public string Source { get; set; }
 }
 
 public sealed class InteractableObject : MonoBehaviour
@@ -43,7 +43,7 @@ public sealed class InteractableObject : MonoBehaviour
 
             GoalEvents.Instance.Raise(new InteractEvent()
             {
-                Source = oInteractable
+                Source = oInteractable.name
             });
 
             //Add other tracking code if you want;

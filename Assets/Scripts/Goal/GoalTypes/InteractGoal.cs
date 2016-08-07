@@ -6,19 +6,19 @@ using System.Text;
 
 public class InteractGoal : Goal
 {
-    public InteractableObject Target { get; set; }
+    public string TargetName { get; set; }
 
-    public InteractGoal(InteractableObject a_oTarget)
+    public InteractGoal(string a_sName)
     {
-        Target = a_oTarget;
+        TargetName = a_sName;
         GoalEvents.Instance.AddListener<InteractEvent>(IsInteracted);
-        GoalText = "Interact with " + a_oTarget.name;
+        //GoalText = "Interact with " + a_oTarget.name;
         //We assign ourselves to it
     }
 
     private void IsInteracted(InteractEvent e)
     {
-        if (Target.Equals(e.Source))
+        if (TargetName.Contains(e.Source))
         {
             Satisfy();
         }

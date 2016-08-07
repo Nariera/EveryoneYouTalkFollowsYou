@@ -60,8 +60,10 @@ public class FakeGoal : MonoBehaviour
 
 	void ToggleNewGoal ()
 	{
-		currentGoalToMimic.gameObject.SetActive (true);
-		currentGoalToMimic.GetComponent<Animator> ().SetTrigger ("Begin");
+        currentGoalToMimic.associatedUIObject.SetActive(true);
+        currentGoalToMimic.associatedUIObject.GetComponent<Animator>().SetTrigger("Begin");
+		//currentGoalToMimic.gameObject.SetActive (true);
+		//currentGoalToMimic.GetComponent<Animator> ().SetTrigger ("Begin");
 	}
 
 	void Start ()
