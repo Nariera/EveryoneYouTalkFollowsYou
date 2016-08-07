@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11486124}
   - 82: {fileID: 8265874}
   - 114: {fileID: 11420606}
+  - 114: {fileID: 11459528}
   m_Layer: 0
   m_Name: FluffyDog
   m_TagString: Untagged
@@ -187,6 +188,17 @@ MonoBehaviour:
   startFollowClip: {fileID: 0}
   lowPitchRange: 0.95
   highPitchRange: 1.05
+--- !u!114 &11459528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c094bde807be8cd4985fd47d09bf1d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11464812
 MonoBehaviour:
   m_ObjectHideFlags: 1

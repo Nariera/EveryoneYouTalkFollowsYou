@@ -745,6 +745,51 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 491082, guid: 63c187a3c80d1294796a794ad243fbc7, type: 2}
   m_PrefabInternal: {fileID: 875567606}
+--- !u!1 &379285559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 379285560}
+  - 114: {fileID: 379285561}
+  m_Layer: 0
+  m_Name: 'Goal: Mailbox'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &379285560
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 379285559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 0
+--- !u!114 &379285561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 379285559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Check the fucking mail
+  pointValue: 1
+  associatedUIObject: {fileID: 0}
+  specificTarget: {fileID: 1246819251}
 --- !u!1001 &384737334
 Prefab:
   m_ObjectHideFlags: 0
@@ -2467,10 +2512,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 8265874, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
   m_IsPrefabParent: 0
@@ -2516,6 +2557,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cfd9df5eca10fa40a8575c552d312de, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1246819251 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 121452, guid: 4cfd9df5eca10fa40a8575c552d312de, type: 2}
+  m_PrefabInternal: {fileID: 1246819250}
 --- !u!1 &1304985539 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 164984, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
@@ -2541,6 +2586,7 @@ MonoBehaviour:
   goalText: Get to Work
   pointValue: 1
   associatedUIObject: {fileID: 1304985539}
+  specificTarget: {fileID: 0}
 --- !u!4 &1312449295 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431874, guid: 18bf92b6c9bf246428256c4a644da60d, type: 2}
@@ -2975,7 +3021,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11498166, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1510084336 stripped
@@ -3060,6 +3107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a48d0ef74999e469116ee17749fd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allGoals: []
   activeGoals: []
   cancelledGoals: []
   completedGoals: []
@@ -3074,7 +3122,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 379285560}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!114 &1531924318

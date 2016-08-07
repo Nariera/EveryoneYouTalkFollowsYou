@@ -19,6 +19,8 @@ public sealed class DestructableObject : MonoBehaviour
 
 	bool exploded;
 
+	public System.Action destroyed;
+
 	private float Size
 	{
 		get
@@ -73,6 +75,9 @@ public sealed class DestructableObject : MonoBehaviour
 			particle.transform.SetParent (ParticleManager.pm.transform);
 			particle.Play ();
 
+			if (destroyed != null)
+				destroyed.Invoke ();
+
 			StartCoroutine (DestroyOnParticleLoss (particle));
 			//Explode ();
 		}
@@ -110,7 +115,7 @@ public sealed class DestructableObject : MonoBehaviour
 		}
 		ExplosionParticleFactory.Instance.Explode (transform.position, Size);
 
-       
+
 		GameObject.Destroy (this.gameObject);
 	}
 

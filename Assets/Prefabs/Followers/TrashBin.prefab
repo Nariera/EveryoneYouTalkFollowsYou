@@ -13,6 +13,7 @@ GameObject:
   - 54: {fileID: 5438684}
   - 65: {fileID: 6505606}
   - 114: {fileID: 11493150}
+  - 114: {fileID: 11433712}
   m_Layer: 0
   m_Name: TrashBin
   m_TagString: Untagged
@@ -92,6 +93,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.924, y: 1.711203, z: 1.1936262}
   m_Center: {x: 0.00001360476, y: 0.8527737, z: 0.073920816}
+--- !u!114 &11433712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c094bde807be8cd4985fd47d09bf1d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11493150
 MonoBehaviour:
   m_ObjectHideFlags: 1

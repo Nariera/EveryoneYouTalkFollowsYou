@@ -7,6 +7,7 @@ public class InteractEvent : GoalEvent
 	public string Source { get; set; }
 }
 
+[RequireComponent (typeof(TrackableObject))]
 public sealed class InteractableObject : MonoBehaviour
 {
 	[SerializeField]
@@ -29,6 +30,8 @@ public sealed class InteractableObject : MonoBehaviour
 
 	public bool onGround { get; private set; }
 
+	public static System.Action<InteractableObject> activated;
+
 	//Use this to get the interactableobject
 	private static Dictionary<GameObject, InteractableObject> library = new Dictionary<GameObject, InteractableObject> ();
 
@@ -40,6 +43,8 @@ public sealed class InteractableObject : MonoBehaviour
 		{
 			Debug.Log (oInteractable.name + " is following!");
 			oInteractable.enabled = true;
+			if (activated != null)
+				activated.Invoke (oInteractable);
 
 			GoalEvents.Instance.Raise (new InteractEvent () {
 				Source = oInteractable.name
@@ -98,20 +103,15 @@ public sealed class InteractableObject : MonoBehaviour
 
 	void OnCollisionEnter (Collision coll)
 	{
-		if (coll.collider.tag == "Terrain")
+		if (coll.collider.tag == "Terrain" || coll.collider.attachedRigidbody == null)
 		{
 			onGround = true;
-		} else
-		{
-			//something not the ground
-			//let's calculate a threshold
-			Collider oTest = gameObject.GetComponent<Collider> ();
 		}
 	}
 
 	void OnCollisionExit (Collision coll)
 	{
-		if (coll.collider.tag == "Terrain")
+		if (coll.collider.tag == "Terrain" || coll.collider.attachedRigidbody == null)
 		{
 			onGround = false;
 		}
