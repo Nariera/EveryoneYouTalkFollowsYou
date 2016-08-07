@@ -71,7 +71,7 @@ public class Talk : MonoBehaviour
 			}
 		} else if (cursor)
 		{
-			if (lerp > 0)
+			if (lerp >= 0)
 			{
 				lerp -= Time.deltaTime;
 
