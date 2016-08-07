@@ -58,6 +58,12 @@ public class GoalMetric : MonoBehaviour
 		//initialize all events here
 	}
 
+	void Start ()
+	{
+		startCount = WorldContainer.transform.childCount;
+	}
+
+
 	private void Update ()
 	{
 		CheckTimer ();
@@ -96,20 +102,18 @@ public class GoalMetric : MonoBehaviour
 		}
 
 		//Doggy
-//        if (!DogDisqualified)
-//        {
-//            if(WorldContainer.transform.childCount == 1)
-//            {
-//                Goal oGoal = new Goal()
-//                {
-//                    goalText = "Man's Best Friend",
-//                    pointValue = 100
-//                };
-//                GoalManager.gm.AddNewGoal(oGoal);
-//                AddTimer(Time.time + TIMER_DELAY, oGoal);
-//                DestroyDisqualified = true;
-//            }
-//        }
+		if (!DogDisqualified)
+		{
+			if ((float)WorldContainer.transform.childCount / (float)startCount < 0.3f)
+			{
+				Goal oGoal = gameObject.AddComponent<Goal> ();
+				oGoal.goalText = "Man's Best Friend";
+				oGoal.pointValue = 100;
+				GoalManager.gm.AddNewGoal (oGoal);
+				AddTimer (Time.time + TIMER_DELAY, oGoal);
+				DogDisqualified = true;
+			}
+		}
 
 
 
@@ -138,6 +142,7 @@ public class GoalMetric : MonoBehaviour
 	//Man's Best Friend
 	private const string BEST_FRIEND_NAME = "FluffyDog";
 	private bool DogDisqualified = false;
+	private int startCount;
 
 	private void CheckDogDeath (DestroyEvent e)
 	{

@@ -85,7 +85,7 @@ public sealed class DestructableObject : MonoBehaviour
 		yield return new WaitUntil (() => target.isStopped);
 
         
-        Destroy (target.gameObject);
+		Destroy (target.gameObject);
 		Destroy (gameObject);
 	}
 
@@ -111,20 +111,25 @@ public sealed class DestructableObject : MonoBehaviour
 		ExplosionParticleFactory.Instance.Explode (transform.position, Size);
 
        
-        GameObject.Destroy (this.gameObject);
+		GameObject.Destroy (this.gameObject);
 	}
 
 	private void OnCollisionEnter (Collision a_oCollision)
 	{
+		float mass = 1;
+
 		//no impact with ground...
 		if (a_oCollision.collider.tag == "Terrain")
 		{
-			return;
+			mass = 0.1f;
+		} else if (a_oCollision.collider.attachedRigidbody != null)
+		{
+			mass = a_oCollision.collider.attachedRigidbody.mass;
 		}
 		//we want to determine the force of the other object;
 		Vector3 v3ImpactForce = a_oCollision.impulse;
 
-		Durability -= v3ImpactForce.magnitude * a_oCollision.collider.bounds.size.magnitude;
+		Durability -= v3ImpactForce.magnitude * mass;
 	}
 
 }
