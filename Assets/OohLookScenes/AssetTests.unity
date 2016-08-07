@@ -192,6 +192,7 @@ MonoBehaviour:
   - {fileID: 736811454}
   - {fileID: 1822911646}
   action: 3
+  secondsAvailable: 0
   prerequisiteGoals:
   - {fileID: 1132367885}
   goalsThisClosesOnReveal: []
@@ -254,6 +255,7 @@ MonoBehaviour:
   - {fileID: 1990056599}
   - {fileID: 1354863898}
   action: 3
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -308,6 +310,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 982233579}
   action: 2
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -957,6 +960,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 1246819251}
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -2203,6 +2207,7 @@ MonoBehaviour:
   - {fileID: 1792695001}
   - {fileID: 1187964635}
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -2517,6 +2522,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 1217438967}
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -2757,6 +2763,7 @@ MonoBehaviour:
   - {fileID: 736811454}
   - {fileID: 1822911646}
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals:
   - {fileID: 2016762790}
   goalsThisClosesOnReveal: []
@@ -2908,6 +2915,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 2136666197}
   action: 4
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -2984,6 +2992,7 @@ MonoBehaviour:
   associatedUIObject: {fileID: 1304985539}
   specificTargets: []
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
@@ -3758,6 +3767,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 1217438967}
   action: 2
+  secondsAvailable: 0
   prerequisiteGoals:
   - {fileID: 1003312045}
   goalsThisClosesOnReveal: []
@@ -4319,6 +4329,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 1554847168}
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal:
   - {fileID: 379285561}
@@ -4775,6 +4786,7 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 2136666197}
   action: 0
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal:
   - {fileID: 379285561}
@@ -4830,6 +4842,7 @@ MonoBehaviour:
   - {fileID: 736811454}
   - {fileID: 1822911646}
   action: 3
+  secondsAvailable: 0
   prerequisiteGoals: []
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []

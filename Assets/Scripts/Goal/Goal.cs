@@ -15,11 +15,14 @@ public class Goal : MonoBehaviour
 	}
 
 	public event System.Action<Goal> OnSatisfied, OnFailed, OnReveal;
+	event System.Action OnTargetClicked;
+
+	bool goalEnded = false;
 
 	protected void Satisfy ()
 	{
 		//We check for prereq goals being done before we ever consider satisfying or even revealing a locked off one
-		if (!prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
+		if (!goalEnded && !prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
 		{
 			if (OnSatisfied != null)
 			{
@@ -30,22 +33,29 @@ public class Goal : MonoBehaviour
 			{
 				GoalManager.gm.CancelGoal (t);
 			}
+
+			goalEnded = true;
 		}
 	}
 
 	protected void Fail ()
 	{
 		//Can still fail early
-		if (OnFailed != null)
+		if (!goalEnded)
 		{
-			OnFailed (this);
+			if (OnFailed != null)
+			{
+				OnFailed (this);
+			}
+
+			goalEnded = true;
 		}
 	}
 
 	protected void Reveal ()
 	{
 		//See Satisfy for notes
-		if (!prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
+		if (!goalEnded && !prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
 		{
 			if (OnReveal != null)
 			{
@@ -61,11 +71,12 @@ public class Goal : MonoBehaviour
 		}
 	}
 
-	protected void CheckForSatisfy (InteractableObject candidate)
+	protected void CheckClickForTarget (InteractableObject candidate)
 	{
 		if (specificTargets.Contains (candidate.gameObject))
 		{
-			Satisfy ();
+			if (OnTargetClicked != null)
+				OnTargetClicked.Invoke ();
 		}
 	}
 
@@ -87,6 +98,9 @@ public class Goal : MonoBehaviour
 	public List<GameObject> specificTargets = new List<GameObject> ();
 
 	public GoalAction action;
+
+	[Tooltip ("If 0, it will stay more-or-less permanently. Otherwise, this is a time limit to clear space on the screen.")]
+	public int secondsAvailable = 0;
 
 	[Tooltip ("This goal is off limits until these fuckers get completed.")]
 	public List<Goal> prerequisiteGoals = new List<Goal> ();
@@ -112,15 +126,16 @@ public class Goal : MonoBehaviour
 			targInter = t.GetComponent<InteractableObject> ();
 			targTrack = t.GetComponent<TrackableObject> ();
 
+			InteractableObject.activated += CheckClickForTarget;
+
 			switch (action)
 			{
 			case GoalAction.Interact:
 				if (targDestr)
 					targDestr.destroyed += Fail;
-				if (targInter)
-					InteractableObject.activated += CheckForSatisfy;
 				if (targTrack)
 					targTrack.seen += Reveal;
+				OnTargetClicked += Satisfy;
 				break;
 			case GoalAction.Kill:
 				if (targDestr)
@@ -142,15 +157,36 @@ public class Goal : MonoBehaviour
 				}
 				break;
 			case GoalAction.Avoid:
-				if (targTrack)
-				{
-					targTrack.seen += Reveal;
-					targTrack.seen += Fail;
-				}
+				OnTargetClicked += Reveal;
+				OnTargetClicked += Fail;
 				break;
 			}
 
+			if (targTrack && secondsAvailable > 0)
+			{
+				targTrack.seen += StartTimer;
+			}
+
 		}
+	}
+
+	void StartTimer ()
+	{
+		//Only start timer when the goal's prereqs are ready
+		if (!prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
+			StartCoroutine (Timer (secondsAvailable));
+	}
+
+	IEnumerator Timer (float seconds)
+	{
+		yield return new WaitForSeconds (seconds);
+
+		if (action == GoalAction.Avoid)
+		{
+			Reveal ();
+			Satisfy ();
+		} else
+			Fail ();
 	}
 
 	#endregion
