@@ -6,8 +6,7 @@ public class TextTyper : MonoBehaviour
 {
 
 	public float letterPause = 0.4f;
-	public AudioClip typeSound1;
-	public AudioClip typeSound2;
+	public AudioClip[] keySounds;
 
 	string message;
 	Text textComp;
@@ -42,8 +41,8 @@ public class TextTyper : MonoBehaviour
 		foreach (char letter in message.ToCharArray())
 		{
 			textComp.text += letter;
-			if (typeSound1 && typeSound2)
-				SoundManager.instance.RandomizeSfx (typeSound1, typeSound2);
+			if (keySounds != null && keySounds.Length > 0)
+				SoundManager.instance.RandomizeSfx (keySounds);
 			yield return 0;
 			yield return new WaitForSeconds (letterPause);
 		}
