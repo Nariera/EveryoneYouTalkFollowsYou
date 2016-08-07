@@ -2155,6 +2155,57 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 462304, guid: 7d58f58901003f748876f8d5a013a3c1, type: 2}
   m_PrefabInternal: {fileID: 258923776}
+--- !u!1 &924110318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 924110319}
+  - 114: {fileID: 924110320}
+  m_Layer: 0
+  m_Name: 'Goal: Gaslight'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &924110319
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924110318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531924317}
+  m_RootOrder: 11
+--- !u!114 &924110320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924110318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f732a8cf8da3b340a2051fedb6a0980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completed: 0
+  cancelled: 0
+  goalText: Do you ever feel like you're being gaslighted?
+  pointValue: 1
+  associatedUIObject: {fileID: 0}
+  specificTargets:
+  - {fileID: 1792695001}
+  - {fileID: 1187964635}
+  action: 0
+  prerequisiteGoals: []
+  goalsThisClosesOnReveal: []
+  goalsThisClosesOnSatisfy: []
 --- !u!1001 &932525219
 Prefab:
   m_ObjectHideFlags: 0
@@ -2756,6 +2807,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7bfa9704ee5cde4f803c3405d6f120c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1187964635 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100806, guid: 8c39b392a821be042a409707fcb541ad, type: 2}
+  m_PrefabInternal: {fileID: 1422105123}
 --- !u!4 &1199797518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 448414, guid: 8c39b392a821be042a409707fcb541ad, type: 2}
@@ -2773,7 +2828,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 244.53
+      value: 246.28
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2781,23 +2836,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 280.78
+      value: 279.06
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 3.792506e-17
+      value: 5.338078e-17
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.32600495
+      value: 0.120891616
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 7.784916e-17
+      value: 6.8185735e-17
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.94536805
+      value: 0.99266577
       objectReference: {fileID: 0}
     - target: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
       propertyPath: m_RootOrder
@@ -2848,7 +2903,7 @@ MonoBehaviour:
   completed: 0
   cancelled: 0
   goalText: Ignore the Puppy
-  pointValue: 1
+  pointValue: -3
   associatedUIObject: {fileID: 0}
   specificTargets:
   - {fileID: 2136666197}
@@ -3180,11 +3235,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 114
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMin.x
@@ -3232,51 +3287,51 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 21
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -3483,6 +3538,7 @@ Transform:
   - {fileID: 1003312044}
   - {fileID: 1622225573}
   - {fileID: 1233697174}
+  - {fileID: 924110319}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!114 &1531924318
@@ -3702,7 +3758,8 @@ MonoBehaviour:
   specificTargets:
   - {fileID: 1217438967}
   action: 2
-  prerequisiteGoals: []
+  prerequisiteGoals:
+  - {fileID: 1003312045}
   goalsThisClosesOnReveal: []
   goalsThisClosesOnSatisfy: []
 --- !u!1001 &1630176636
@@ -4099,6 +4156,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 446212, guid: 94f187e872f69464b96c988a2377c96c, type: 2}
   m_PrefabInternal: {fileID: 1079530097}
+--- !u!1 &1792695001 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100806, guid: 8c39b392a821be042a409707fcb541ad, type: 2}
+  m_PrefabInternal: {fileID: 333643753}
 --- !u!4 &1817510730 stripped
 Transform:
   m_PrefabParentObject: {fileID: 485126, guid: a53d56c2b453b6343ac2145ac92069a5, type: 2}
