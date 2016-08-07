@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
 	{
 		if (instance == null)
 		{
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 			instance = this;
 		} else if (instance != this)
 			Destroy (gameObject);
@@ -38,4 +38,6 @@ public class SoundManager : MonoBehaviour
 		efxSource.clip = clips [randomIndex];
 		efxSource.Play ();
 	}
+
+
 }

@@ -84,7 +84,6 @@ public sealed class DestructableObject : MonoBehaviour
 			}
 		}
 		ExplosionParticleFactory.Instance.Explode (transform.position, Size);
-		Debug.Log (gameObject.name + " has exploded.");
 
 		GameObject.Destroy (this.gameObject);
 	}
