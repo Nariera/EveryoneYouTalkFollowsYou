@@ -17,6 +17,8 @@ public sealed class DestructableObject : MonoBehaviour
 	private const float EXPLOSION_RADIUS_BASE = 5.0f;
 	private const float EXPLOSION_UPWARD = 1.25f;
 
+	bool exploded;
+
 	private float Size
 	{
 		get
@@ -31,16 +33,16 @@ public sealed class DestructableObject : MonoBehaviour
 		}
 	}
 
-    private static bool ExplosionINstantiateLock = false;
-    //ayyy...lol..don't do this at home...seriously
-    private void Awake()
-    {
-        if (!ExplosionINstantiateLock)
-        {
-            ExplosionINstantiateLock = true;
-            ExplosionParticleFactory.Instance.ToString();
-        }
-    }
+	private static bool ExplosionINstantiateLock = false;
+	//ayyy...lol..don't do this at home...seriously
+	private void Awake ()
+	{
+		if (!ExplosionINstantiateLock)
+		{
+			ExplosionINstantiateLock = true;
+			ExplosionParticleFactory.Instance.ToString ();
+		}
+	}
 
 	private void Start ()
 	{
@@ -58,10 +60,26 @@ public sealed class DestructableObject : MonoBehaviour
 
 	private void Update ()
 	{
-		if (Durability < 0)
+		if (Durability < 0 && !exploded)
 		{
-			Explode ();
+			exploded = true;
+			var particle =	GetComponentInChildren<ParticleSystem> ();
+			particle.transform.SetParent (ParticleManager.pm.transform);
+			particle.Play ();
+
+			StartCoroutine (DestroyOnParticleLoss (particle));
+			//Explode ();
 		}
+	}
+
+	System.Collections.IEnumerator DestroyOnParticleLoss (ParticleSystem target)
+	{
+		GetComponent<Renderer> ().enabled = false;
+
+		yield return new WaitUntil (() => target.isStopped);
+
+		Destroy (target.gameObject);
+		Destroy (gameObject);
 	}
 
 	/// <summary>
