@@ -1,33 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**Pretend goal to manage the center UI w/o causing script reference confusions -P */
 public class FakeGoal : MonoBehaviour
 {
 	public UnityEngine.UI.Text textUI;
 	public RectTransform starRect;
+	Queue<Goal> waitingToAnim = new Queue<Goal> ();
 
-	Goal currentGoalToMimic;
+	bool ready = true;
 
 	/**Change the text! And cascade animations -P */
 	public void NewGoal (Goal goal)
 	{
-		textUI.text = goal.goalText;
+		waitingToAnim.Enqueue (goal);
+	}
 
-		currentGoalToMimic = goal;
+	void Update ()
+	{
+		if (waitingToAnim.Count > 0 && ready)
+		{
+			BeginGoalAnim (waitingToAnim.Dequeue ());
+			ready = false;
+		}
+	}
+
+	void BeginGoalAnim (Goal goal)
+	{
+		textUI.text = goal.goalText;
 
 		GetComponent<Animator> ().SetTrigger ("Begin");
 
-		Invoke ("MoveStar", 2.5f);
+		StartCoroutine (MoveStar (2.5f, goal));
 	}
 
-	void MoveStar ()
+	IEnumerator MoveStar (float time, Goal goal)
 	{
-		StartCoroutine (StarMovement (1));
+		yield return new WaitForSeconds (time);
+
+		ready = true;
+		StartCoroutine (StarMovement (1, goal));
 	}
 
 	/**Hand-coded anim, bitchez (damn this Unity version) -P */
-	IEnumerator StarMovement (float time)
+	IEnumerator StarMovement (float time, Goal goal)
 	{
 		float elapsedTime = 0;
 		
@@ -55,15 +72,13 @@ public class FakeGoal : MonoBehaviour
 			yield return null;
 		}
 
-		ToggleNewGoal ();
+		ToggleNewGoal (goal);
 	}
 
-	void ToggleNewGoal ()
+	void ToggleNewGoal (Goal goal)
 	{
-        currentGoalToMimic.associatedUIObject.SetActive(true);
-        currentGoalToMimic.associatedUIObject.GetComponent<Animator>().SetTrigger("Begin");
-		//currentGoalToMimic.gameObject.SetActive (true);
-		//currentGoalToMimic.GetComponent<Animator> ().SetTrigger ("Begin");
+		goal.associatedUIObject.SetActive (true);
+		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Begin");
 	}
 
 	void Start ()

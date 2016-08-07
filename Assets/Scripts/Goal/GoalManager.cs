@@ -5,81 +5,65 @@ using System;
 
 public class GoalManager : MonoBehaviour
 {
-    private Queue<Goal> PremadeList = new Queue<Goal>();
-    private Queue<Goal> BorrowedList = new Queue<Goal>();
-    private Queue<Goal> HiddenList = new Queue<Goal>();
-	public GameObject Test;
+	#region GenerateGoal
 
-    [SerializeField]
-    private float LastAddedGoal = 0.0f;
-
-    private void Update()
-    {
-        //LastAddedGoal += Time.deltaTime;
-        //if(LastAddedGoal > 5 && PremadeList.Count > 0)
-        //{
-        //    Goal oTest = PremadeList.Dequeue();
-        //    oTest.IsListening = true;
-        //    AddNewGoal(oTest);
-        //    LastAddedGoal = 0;
-        //}
-    }
-    #region GenerateGoal
-    private void GeneratePremadeGoal()
-    {
-        //Load via text file
-        TextAsset txtPremadeGoal = Resources.Load<TextAsset>("InteractGoals");
-        string txtGoals = txtPremadeGoal.text;
-        string[] asGoals = txtGoals.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-        foreach(string sGoal in asGoals)
-        {
-            string[] sData = sGoal.Split(',');
-            if(sData.Length == 2)
-            {
-                InteractGoal oPremadeGoal = new InteractGoal(sData[1])
-                {
-                    completed = false,
-                    pointValue = UnityEngine.Random.Range(1, 1000),
-                    goalText = sData[0] + " " + sData[1],
-                    IsListening = false
-                };
-                oPremadeGoal.OnSatisfied += GoalSatified;
-                PremadeList.Enqueue(oPremadeGoal);
-            }
-        }
-
-    }
+	private void GeneratePremadeGoal ()
+	{
+		//Load via text file
+		TextAsset txtPremadeGoal = Resources.Load<TextAsset> ("InteractGoals");
+		string txtGoals = txtPremadeGoal.text;
+		string[] asGoals = txtGoals.Split (new string[] { Environment.NewLine }, StringSplitOptions.None);
+		foreach (string sGoal in asGoals)
+		{
+			string[] sData = sGoal.Split (',');
+			if (sData.Length == 2)
+			{
+				var oPremadeGoal = CreateInteractGoal (sData [1]);
+				oPremadeGoal.TargetName = sData [1];
+				oPremadeGoal.goalText = sData [0] + " " + sData [1];
+				AddNewGoal (oPremadeGoal);
+			}
+		}
+	}
 
 	private void GenerateBorrowedGoal ()
 	{
-        var BorrowedPrefab = Resources.LoadAll<GameObject>("BorrowedFollowers");
-        foreach (var oBorrowedPrefab in BorrowedPrefab)
-        {
-            InteractGoal oBorrowedGoal = new InteractGoal(oBorrowedPrefab.name)
-            {
-                completed = false,
-                pointValue = UnityEngine.Random.Range(1, 1000),
-                goalText = "Interact with " + oBorrowedPrefab.name,
-                IsListening = false
-            };
-            oBorrowedGoal.OnSatisfied += GoalSatified;
-            BorrowedList.Enqueue(oBorrowedGoal);
-        }
+		var BorrowedPrefab = Resources.LoadAll<GameObject> ("BorrowedFollowers");
+		foreach (var oBorrowedPrefab in BorrowedPrefab)
+		{
+			var oBorrowedGoal = CreateInteractGoal (oBorrowedPrefab.name);
+			oBorrowedGoal.goalText = "Interact with " + oBorrowedPrefab.name;
+			AddNewGoal (oBorrowedGoal);
+		}
         
-    }
+	}
 
-    private void GenerateHiddenGoal()
-    {
+	private void GenerateHiddenGoal ()
+	{
 
-        //So we want to generate somethingg based off of a function
-        //NeverMove
+		//So we want to generate somethingg based off of a function
+		//NeverMove
         
-    }
-    #endregion
-    private void GoalSatified (Goal a_oGoal)
-    { 
-		a_oGoal.OnSatisfied -= GoalSatified; //shouldn't error since there's no other way it can get here
-        CompleteGoal(a_oGoal);
+	}
+
+	InteractGoal CreateInteractGoal (string s = "")
+	{
+		GameObject go = new GameObject ();
+		go.name = "Goal (" + s + ")";
+		go.transform.SetParent (transform);
+		InteractGoal iGoal = go.AddComponent<InteractGoal> ();
+		iGoal.TargetName = "";
+		iGoal.OnSatisfied += GoalSatisfied;
+
+		return iGoal;
+	}
+
+	#endregion
+
+	private void GoalSatisfied (Goal a_oGoal)
+	{ 
+		a_oGoal.OnSatisfied -= GoalSatisfied; //shouldn't error since there's no other way it can get here
+		CompleteGoal (a_oGoal);
 	}
     
 
@@ -99,6 +83,7 @@ public class GoalManager : MonoBehaviour
 	/**delegates called when goals do shit, if we need those -P */
 	public System.Action<Goal> onGoalAdded, onGoalCancel, onGoalComplete;
 
+	/**Call this when you're ready to put the goal on the UI, not when you want a goal to track*/
 	public void AddNewGoal (Goal goal)
 	{
 		if (goal.completed)
@@ -128,13 +113,9 @@ public class GoalManager : MonoBehaviour
 		}
 		activeGoals.Remove (goal);
 		cancelledGoals.Add (goal);
-		goal.completed = true;
+		goal.cancelled = true;
 
-		//Anim time -P
-		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Cancelled");
-
-		//Queue return to pool -P
-		StartCoroutine (ReturnToGoalObjectPool (goal.associatedUIObject, 5));
+		StartCoroutine (WaitToCancel (goal));
 
 		//If any methods to call when goal is cancelled, do 'em, do 'em hard -P
 		if (onGoalCancel != null)
@@ -152,11 +133,7 @@ public class GoalManager : MonoBehaviour
 		completedGoals.Add (goal);
 		goal.completed = true;
 
-		//Do the anim! -P
-		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Completed");
-
-		//Queue return to pool -P
-		StartCoroutine (ReturnToGoalObjectPool (goal.associatedUIObject, 5));
+		StartCoroutine (WaitToComplete (goal));
 
 		//You know, delegate ish -P
 		if (onGoalComplete != null)
@@ -177,9 +154,32 @@ public class GoalManager : MonoBehaviour
 		}
 	}
 
+	IEnumerator WaitToCancel (Goal goal)
+	{
+		yield return new WaitUntil (() => goal.associatedUIObject != null && goal.associatedUIObject.activeSelf);
+
+		//Anim time -P
+		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Cancelled");
+
+		//Queue return to pool -P
+		StartCoroutine (ReturnToGoalObjectPool (goal.associatedUIObject, 5));
+	}
+
+	IEnumerator WaitToComplete (Goal goal)
+	{
+		yield return new WaitUntil (() => goal.associatedUIObject != null && goal.associatedUIObject.activeSelf);
+
+		//Anim time -P
+		goal.associatedUIObject.GetComponent<Animator> ().SetTrigger ("Completed");
+
+		//Queue return to pool -P
+		StartCoroutine (ReturnToGoalObjectPool (goal.associatedUIObject, 5));
+	}
+
 	/**Moar pool management -P */
 	IEnumerator ReturnToGoalObjectPool (GameObject obj, float time)
 	{
+
 		yield return new WaitForSeconds (time);
 
 		obj.SetActive (false);
@@ -189,10 +189,11 @@ public class GoalManager : MonoBehaviour
 	void Start ()
 	{
 		AddNewGoal (mainGoal);
-        GenerateBorrowedGoal();
-        GeneratePremadeGoal();
-        GenerateHiddenGoal();
-    }
+		//GenerateBorrowedGoal ();
+		GeneratePremadeGoal ();
+		GenerateHiddenGoal ();
+
+	}
 
 	public int TallyCompletedPoints ()
 	{

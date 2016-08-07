@@ -2537,6 +2537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
+  cancelled: 0
   goalText: Get to Work
   pointValue: 1
   associatedUIObject: {fileID: 1304985539}
@@ -3059,8 +3060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a48d0ef74999e469116ee17749fd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Test: {fileID: 0}
-  LastAddedGoal: 0
   activeGoals: []
   cancelledGoals: []
   completedGoals: []

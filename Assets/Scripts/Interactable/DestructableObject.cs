@@ -33,13 +33,13 @@ public sealed class DestructableObject : MonoBehaviour
 		}
 	}
 
-	private static bool ExplosionINstantiateLock = false;
+	private static bool ExplosionInstantiateLock = false;
 	//ayyy...lol..don't do this at home...seriously
 	private void Awake ()
 	{
-		if (!ExplosionINstantiateLock)
+		if (!ExplosionInstantiateLock)
 		{
-			ExplosionINstantiateLock = true;
+			ExplosionInstantiateLock = true;
 			ExplosionParticleFactory.Instance.ToString ();
 		}
 	}
