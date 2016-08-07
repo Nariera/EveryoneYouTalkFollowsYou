@@ -193,8 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1226c84c6b844a742a86f422c459c78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideClip: {fileID: 8300000, guid: 33ca6498fbf29ec438a9a64dbe855132, type: 3}
+  collideClips:
+  - {fileID: 8300000, guid: 33ca6498fbf29ec438a9a64dbe855132, type: 3}
   startFollowClip: {fileID: 0}
+  lowPitchRange: 0.95
+  highPitchRange: 1.05
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

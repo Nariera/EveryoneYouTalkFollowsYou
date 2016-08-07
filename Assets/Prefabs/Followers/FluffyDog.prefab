@@ -106,7 +106,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -180,8 +180,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1226c84c6b844a742a86f422c459c78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideClip: {fileID: 8300000, guid: 19f589b06992bc04b94d322668e9be47, type: 3}
+  collideClips:
+  - {fileID: 8300000, guid: 5006911c9a9b06742b86beb2d0204330, type: 3}
+  - {fileID: 8300000, guid: ed9813fd9d59eec42a939605f61c8cd7, type: 3}
+  - {fileID: 8300000, guid: 19f589b06992bc04b94d322668e9be47, type: 3}
   startFollowClip: {fileID: 0}
+  lowPitchRange: 0.95
+  highPitchRange: 1.05
 --- !u!114 &11464812
 MonoBehaviour:
   m_ObjectHideFlags: 1

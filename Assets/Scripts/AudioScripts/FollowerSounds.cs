@@ -4,8 +4,11 @@ using System.Collections;
 public class FollowerSounds : MonoBehaviour {
 
     AudioSource audio;
-    public AudioClip collideClip;
+    public AudioClip[] collideClips;
     public AudioClip startFollowClip;
+
+    public float lowPitchRange = 0.95f;
+    public float highPitchRange = 1.05f;
 
     bool initialCollision = true;
 
@@ -17,15 +20,21 @@ public class FollowerSounds : MonoBehaviour {
 
     void OnCollisionEnter(Collision collider)
     {
+        //So that nothing makes a sound on it's first collision.
         if (initialCollision)
         {
             initialCollision = false;
             return;
         }
-        if (audio.isPlaying)
+        if (audio.isPlaying || collideClips == null || collideClips.Length > 0)
             return;
-        audio.clip = collideClip;
+
+
+        int randomIndex = Random.Range(0, collideClips.Length);
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+
+        audio.pitch = randomPitch;
+        audio.clip = collideClips[randomIndex];
         audio.Play();
-        //audio.PlayOneShot(collideClip);
     }
 }
