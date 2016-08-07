@@ -18,7 +18,8 @@ public class Goal : MonoBehaviour
 
 	protected void Satisfy ()
 	{
-		if (OnSatisfied != null)
+		//We check for prereq goals being done before we ever consider satisfying or even revealing a locked off one
+		if (OnSatisfied != null && !prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
 		{
 			OnSatisfied (this);
 		}
@@ -26,6 +27,7 @@ public class Goal : MonoBehaviour
 
 	protected void Fail ()
 	{
+		//Can still fail early
 		if (OnFailed != null)
 		{
 			OnFailed (this);
@@ -34,7 +36,8 @@ public class Goal : MonoBehaviour
 
 	protected void Reveal ()
 	{
-		if (OnReveal != null)
+		//See Satisfy for notes
+		if (OnReveal != null && !prerequisiteGoals.Exists (obj => obj != null && !obj.completed))
 		{
 			OnReveal (this);
 			//Clear it
@@ -73,7 +76,7 @@ public class Goal : MonoBehaviour
 
 	public GoalAction action;
 
-	[Tooltip ("This goal is off limits until these fuckers get completed.")] //TODO
+	[Tooltip ("This goal is off limits until these fuckers get completed.")]
 	public List<Goal> prerequisiteGoals = new List<Goal> ();
 	[Tooltip ("Those fuckers get cancelled when this appears.")]
 	public List<Goal> goalsThisClosesOnReveal = new List<Goal> ();
