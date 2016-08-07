@@ -3645,7 +3645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449722, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
       propertyPath: FailToClick
@@ -3658,7 +3658,7 @@ Prefab:
     - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
       propertyPath: failToClickClip
       value: 
-      objectReference: {fileID: 8300000, guid: c5f01a48f43d3cc44ba83769c02e6a03, type: 3}
+      objectReference: {fileID: 8300000, guid: df71c07bc67a3814c97e2c279646a0b6, type: 3}
     - target: {fileID: 11467668, guid: d41ede063c6e66f41ba43e12cc4ba3b5, type: 2}
       propertyPath: successClickClip
       value: 

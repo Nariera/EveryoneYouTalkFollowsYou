@@ -12,7 +12,6 @@ GameObject:
   - 136: {fileID: 13680214}
   - 114: {fileID: 11431034}
   - 114: {fileID: 11467668}
-  - 114: {fileID: 11498166}
   m_Layer: 0
   m_Name: FollowFPSController
   m_TagString: Player
@@ -498,6 +497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerView: {fileID: 2004154}
   cursor: {fileID: 11427538}
+  failToClickClip: {fileID: 8300000, guid: df71c07bc67a3814c97e2c279646a0b6, type: 3}
+  successClickClip: {fileID: 8300000, guid: dfa080a6c3c21c54a8d5f935c062b99a, type: 3}
 --- !u!114 &11489110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -563,59 +564,6 @@ MonoBehaviour:
   rigidbodyFirstPersonController: {fileID: 11431034}
   StrideInterval: 4
   RunningStrideLengthen: 0.722
---- !u!114 &11498166
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c81407209f85e4c87c0cda8b32868e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 2004154}
-  motionBob:
-    HorizontalBobRange: 0.33
-    VerticalBobRange: 0.33
-    Bobcurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 0.5
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.5
-        value: -1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 2
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    VerticaltoHorizontalRatio: 1
-  jumpAndLandingBob:
-    BobDuration: 0.05
-    BobAmount: 0.3
-  rigidbodyFirstPersonController: {fileID: 11431034}
-  StrideInterval: 0.05
-  RunningStrideLengthen: 0.15
 --- !u!136 &13680214
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -650,6 +598,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
