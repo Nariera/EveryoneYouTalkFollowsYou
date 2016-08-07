@@ -2,7 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class InteractableObject : MonoBehaviour
+public class InteractEvent : GoalEvent
+{
+    public InteractableObject Source { get; set; }
+}
+
+public sealed class InteractableObject : MonoBehaviour
 {
     [SerializeField]
     private GameObject Player;
@@ -18,7 +23,7 @@ public class InteractableObject : MonoBehaviour
 
     //Skip running physics move if it is this close
     private const float MOVEMENT_STOP_MIN = 2.0f;
-    private const float MOVEMENT_STOP_MAX = 20.0f;
+    private const float MOVEMENT_STOP_MAX = 40.0f;
 
     private MovementScript CurrentMovement;
 
@@ -35,6 +40,11 @@ public class InteractableObject : MonoBehaviour
         {
             Debug.Log(oInteractable.name + " is following!");
             oInteractable.enabled = true;
+
+            GoalEvents.Instance.Raise(new InteractEvent()
+            {
+                Source = oInteractable
+            });
 
             //Add other tracking code if you want;
         }

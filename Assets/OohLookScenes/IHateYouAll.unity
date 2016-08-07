@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a48d0ef74999e469116ee17749fd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Test: {fileID: 0}
   activeGoals: []
   cancelledGoals: []
   completedGoals: []
@@ -1061,6 +1062,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1104,6 +1106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completed: 0
-  goalText: Get to Work
+  goalText: Hey this is Placeholder text
   pointValue: 1
   associatedUIObject: {fileID: 2136315709}

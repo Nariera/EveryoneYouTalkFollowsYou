@@ -4,9 +4,50 @@ using System.Collections.Generic;
 
 public class GoalManager : MonoBehaviour
 {
+    private float LastRandomQuest = 0.0f;
+    private float NextRandomQuest = 0.0f;
 
-	//Static ref. -P
-	public static GoalManager gm;
+    private const float QUEST_RANDOM_MIN = 20.0f;
+    private const float QUEST_RANDOM_MAX = 40.0f;
+
+    private List<Goal> ActiveGoal = new List<Goal>();
+    private List<Goal> CancelledGoal = new List<Goal>();
+    private List<Goal> CompletedGoal = new List<Goal>();
+
+    public GameObject Test;
+    void Awake()
+    {
+        //InteractableObject abc = Test.GetComponent<InteractableObject>();
+        //InteractGoal oNewGoal = new InteractGoal(abc);
+        //AddNewGoal(oNewGoal);
+        //oNewGoal.OnSatisfied += GoalSatified;
+    }
+
+    private void Update()
+    {
+        //something something something
+    }
+    
+    private void GenerateGoal()
+    {
+
+    }
+
+    private void GoalSatified(Goal a_oGoal)
+    {
+        Debug.Log("Goal Satisfied");
+        a_oGoal.OnSatisfied -= GoalSatified; //shouldn't error since there's no other way it can get here
+        //we check if it is active quest
+        if (ActiveGoal.Contains(a_oGoal))
+        {
+            ActiveGoal.Remove(a_oGoal);
+            CompletedGoal.Add(a_oGoal);
+        }
+    }
+    
+
+    //Static ref. -P
+    public static GoalManager gm;
 
 	public List<Goal> activeGoals = new List<Goal> ();
 	public List<Goal> cancelledGoals = new List<Goal> ();
@@ -123,13 +164,5 @@ public class GoalManager : MonoBehaviour
 
 		return totalPoints;
 	}
-
-	void Awake ()
-	{
-		//Static ref pseudo-init -P
-		if (gm == null)
-			gm = this;
-		else if (gm != this)
-			Destroy (this);
-	}
+    
 }

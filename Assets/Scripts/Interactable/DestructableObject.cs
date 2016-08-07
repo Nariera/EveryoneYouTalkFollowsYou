@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class DestructableObject : MonoBehaviour
+public sealed class DestructableObject : MonoBehaviour
 {
     private Rigidbody Body;
     private Collider Hitbox;

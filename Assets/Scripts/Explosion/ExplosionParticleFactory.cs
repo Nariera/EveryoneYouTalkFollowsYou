@@ -5,7 +5,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-public class ExplosionParticleFactory
+public sealed class ExplosionParticleFactory
 {
     public static ExplosionParticleFactory Instance
     {
@@ -27,7 +27,7 @@ public class ExplosionParticleFactory
     private const float DISPERSION_STRENGTH = 200f;
     private const float DISPERSION_RADIUS = 5f;
     private const float DISPERSION_OFFSET = 0.125f;
-    private const int PARTICLE_COUNT_BASE = 15;
+    private const int PARTICLE_COUNT_BASE = 20;
     private const string PARTICLE_PATH = "Explosion Particle";
 
     private ExplosionParticleFactory()

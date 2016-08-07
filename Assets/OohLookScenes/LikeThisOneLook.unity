@@ -238,6 +238,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerView: {fileID: 272783677}
+--- !u!114 &638748841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638748834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a48d0ef74999e469116ee17749fd78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Test: {fileID: 1190130701}
+  subGoalCollection: {fileID: 0}
 --- !u!1 &749579658
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +260,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 749579660}
   - 108: {fileID: 749579659}
+  - 114: {fileID: 749579661}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -299,6 +313,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &749579661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 749579658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88d8598da2d5a6409dd39a0759fd44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &854238589
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1020325691
 MonoBehaviour:
   m_ObjectHideFlags: 0

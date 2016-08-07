@@ -6,7 +6,7 @@ using UnityEngine;
 
 public delegate void ParticleEvent(ExplosionParticle a_oParticle);
 
-public class ExplosionParticle : MonoBehaviour
+public sealed class ExplosionParticle : MonoBehaviour
 {
     
     private const float PARTICLE_EXPIRATION = 5f;
