@@ -15,10 +15,10 @@ public static class Movement
 {
 	private const float JUMPING_INTERVAL_MIN = 0.2f;
 	private const float JUMPING_INTERVAL_MAX = 1.0f;
-    private const float JUMPING_ANGLE_MIN = 30f;
-    private const float JUMPING_ANGLE_MAX = 85f;
-    private const float JUMPING_DIST_MIN = 0.5f;
-    private const float JUMPING_DIST_MAX = 0.9f;
+	private const float JUMPING_ANGLE_MIN = 30f;
+	private const float JUMPING_ANGLE_MAX = 85f;
+	private const float JUMPING_DIST_MIN = 0.5f;
+	private const float JUMPING_DIST_MAX = 0.9f;
 
 	private static Dictionary<GameObject, float> LastUpdateLibrary = new Dictionary<GameObject, float> ();
 
@@ -136,7 +136,7 @@ public static class Movement
 
 		Vector3 v3Difference = v3PlayerLocation - v3MovingObjectLocation;
 
-		a_oBody.AddForce (v3Difference * a_fMagnitude, ForceMode.Force);
+		a_oBody.AddForce (v3Difference * a_fMagnitude * a_oBody.mass / 4, ForceMode.Force);
 	}
 
 	#region JumpToward
@@ -162,8 +162,8 @@ public static class Movement
 			//delta x between two object
 			float fGroundDistance = Vector3.Distance (v3PlanePlayerLocation, v3PlaneMovingLocation);
 
-            //Random distance between player and itself
-            fGroundDistance *= UnityEngine.Random.Range(JUMPING_DIST_MIN, JUMPING_DIST_MAX);
+			//Random distance between player and itself
+			fGroundDistance *= UnityEngine.Random.Range (JUMPING_DIST_MIN, JUMPING_DIST_MAX);
 
 			//height distance - y
 			float fHeightDistance = v3MovingObjectLocation.y - v3PlayerLocation.y;
@@ -174,22 +174,22 @@ public static class Movement
 
 			float fAngleDifference = Vector3.Angle (Vector3.forward, v3PlanePlayerLocation - v3PlaneMovingLocation);
 			Vector3 v3FinalVelocity = Quaternion.AngleAxis (fAngleDifference, Vector3.up) * v3Velocity;
-            //this in theory should hit toward us...but we want to re-tweek it towards us. y is correct tho
-            Vector3 v3Difference = Vector3.Normalize(v3PlanePlayerLocation - v3PlaneMovingLocation);
-            //Vector3 v3PlaneVelocity = new Vector3(v3FinalVelocity.x * v3Difference.x, 0, v3FinalVelocity.z * v3Difference.z);
-            //apply motion
-            if((v3FinalVelocity.x > 0 && v3Difference.x < 0) || (v3FinalVelocity.x < 0 && v3Difference.x > 0))
-            {
-                v3FinalVelocity.x *= -1;
-            }
-            if ((v3FinalVelocity.y > 0 && v3Difference.y < 0) || (v3FinalVelocity.y < 0 && v3Difference.y > 0))
-            {
-                v3FinalVelocity.y *= -1;
-            }
-            //v3FinalVelocity.x = v3PlaneVelocity.x;
-            //v3FinalVelocity.z = v3PlaneVelocity.z;
+			//this in theory should hit toward us...but we want to re-tweek it towards us. y is correct tho
+			Vector3 v3Difference = Vector3.Normalize (v3PlanePlayerLocation - v3PlaneMovingLocation);
+			//Vector3 v3PlaneVelocity = new Vector3(v3FinalVelocity.x * v3Difference.x, 0, v3FinalVelocity.z * v3Difference.z);
+			//apply motion
+			if ((v3FinalVelocity.x > 0 && v3Difference.x < 0) || (v3FinalVelocity.x < 0 && v3Difference.x > 0))
+			{
+				v3FinalVelocity.x *= -1;
+			}
+			if ((v3FinalVelocity.y > 0 && v3Difference.y < 0) || (v3FinalVelocity.y < 0 && v3Difference.y > 0))
+			{
+				v3FinalVelocity.y *= -1;
+			}
+			//v3FinalVelocity.x = v3PlaneVelocity.x;
+			//v3FinalVelocity.z = v3PlaneVelocity.z;
 
-            a_oBody.AddForce (v3FinalVelocity * a_oBody.mass, ForceMode.Impulse);
+			a_oBody.AddForce (v3FinalVelocity * a_oBody.mass, ForceMode.Impulse);
 
 			//update the last updated time
 			UpdateTime (a_oBody.gameObject);
@@ -270,6 +270,52 @@ public static class Movement
 
 				righteousCondom.AddForce (dir * righteousCondom.mass * 10, ForceMode.Impulse);
 			}
+		}
+	}
+
+	#endregion
+
+	#region KittyPaws
+
+	public static MovementScript KittyPaws ()
+	{
+		int shyness = UnityEngine.Random.Range (7, 10);
+		return (prey, calico) => KittyPawsScript (prey, calico, shyness);
+	}
+
+	private static void KittyPawsScript (GameObject prey, Rigidbody calico, int shyness)
+	{
+		InteractableObject clawsOfDeath = InteractableObject.Get (calico.gameObject);
+
+		var dist = Vector3.Distance (prey.transform.position, calico.transform.position);
+		var dir = (prey.transform.position - calico.transform.position).normalized;
+
+		//Turn to sky when airborne
+		if (!clawsOfDeath.onGround)
+		{
+			var rot = Quaternion.FromToRotation (calico.transform.forward, Vector3.up);
+			calico.AddTorque (new Vector3 (rot.x, rot.y, rot.z) * 20);
+		}
+
+		//Run when near
+		else if (dist < shyness)
+		{
+			calico.AddForce (-dir * shyness * calico.mass * 10);
+
+			var rot = Quaternion.FromToRotation (calico.transform.forward + calico.transform.up, Vector3.up);
+			calico.AddTorque (new Vector3 (rot.x, rot.y, rot.z) * 30);
+		}
+
+		//Stalk from afar
+		else if (dist > shyness * 2)
+		{
+			calico.AddForce (dir * calico.mass * shyness * 10);
+		}
+		//Pounce in the sweet spot
+		else
+		{
+			dir.y++;
+			calico.AddForce (dir * calico.mass * shyness * 25);
 		}
 	}
 
