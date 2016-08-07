@@ -2407,8 +2407,9 @@ GameObject:
   - 4: {fileID: 937759439}
   - 212: {fileID: 937759440}
   - 114: {fileID: 937759441}
-  - 65: {fileID: 937759442}
   - 54: {fileID: 937759443}
+  - 114: {fileID: 937759444}
+  - 65: {fileID: 937759442}
   m_Layer: 0
   m_Name: Egg1
   m_TagString: Untagged
@@ -2479,7 +2480,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.64000005, z: 0.20000005}
+  m_Size: {x: 0.4, y: 0.64000005, z: 0.20000005}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &937759443
 Rigidbody:
@@ -2496,6 +2497,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &937759444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937759438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b0b51d21dcb314dbb253fe6f62d5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Body: {fileID: 0}
+  MovementType: 
 --- !u!1001 &947523976
 Prefab:
   m_ObjectHideFlags: 0
