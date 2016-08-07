@@ -31,6 +31,17 @@ public sealed class DestructableObject : MonoBehaviour
 		}
 	}
 
+    private static bool ExplosionINstantiateLock = false;
+    //ayyy...lol..don't do this at home...seriously
+    private void Awake()
+    {
+        if (!ExplosionINstantiateLock)
+        {
+            ExplosionINstantiateLock = true;
+            ExplosionParticleFactory.Instance.ToString();
+        }
+    }
+
 	private void Start ()
 	{
         

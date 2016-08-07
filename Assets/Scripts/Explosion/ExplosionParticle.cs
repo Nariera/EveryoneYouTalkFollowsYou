@@ -15,7 +15,7 @@ public sealed class ExplosionParticle : MonoBehaviour
     private float TimeAlive = 0f;
 
     public Rigidbody Body;
-
+    public Renderer Render;
     public event ParticleEvent OnExpire;
 
     private void OnEnable()

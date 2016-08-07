@@ -28,6 +28,7 @@ public sealed class ExplosionParticleFactory
     private const float DISPERSION_RADIUS = 5f;
     private const float DISPERSION_OFFSET = 0.125f;
     private const int PARTICLE_COUNT_BASE = 20;
+    private const int PARTICLE_POOL_BASE = 1000;
     private const string PARTICLE_PATH = "Explosion Particle";
 
     private ExplosionParticleFactory()
@@ -36,6 +37,16 @@ public sealed class ExplosionParticleFactory
         ParticleContainer.name = "Particle Container";
         ParticleContainer.transform.position = Vector3.zero;
         ParticlePrefab = Resources.Load<GameObject>(PARTICLE_PATH);
+
+        for(int i = 1; i <= 1000; i++)
+        {
+            GameObject goNewParticle = GameObject.Instantiate<GameObject>(ParticlePrefab);
+            ExplosionParticle oParticle = goNewParticle.GetComponent<ExplosionParticle>();
+            oParticle.gameObject.transform.parent = ParticleContainer.transform;
+            oParticle.gameObject.SetActive(false);
+            oParticle.OnExpire += ParticleExpire;
+            ParticlePool.Push(oParticle);
+        }
     }
 
     /// <summary>
@@ -54,8 +65,14 @@ public sealed class ExplosionParticleFactory
             v3ParticlePosition.y += UnityEngine.Random.Range(-DISPERSION_OFFSET, DISPERSION_OFFSET);
             v3ParticlePosition.z += UnityEngine.Random.Range(-DISPERSION_OFFSET, DISPERSION_OFFSET);
             oParticle.transform.position = v3ParticlePosition;
+
+            Color oRandomColor = new Color(UnityEngine.Random.Range(0.0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+
+            oParticle.Render.material.color = oRandomColor;
+
             oParticle.gameObject.SetActive(true);
             oParticle.Body.AddExplosionForce(DISPERSION_STRENGTH, a_v3Position, DISPERSION_RADIUS);
+            
         }
     }
 
