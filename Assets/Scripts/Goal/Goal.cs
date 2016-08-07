@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Goal : MonoBehaviour
 {
-
+    public bool IsListening { get; set; }
     public event System.Action<Goal> OnSatisfied;
 
     protected void Satisfy()

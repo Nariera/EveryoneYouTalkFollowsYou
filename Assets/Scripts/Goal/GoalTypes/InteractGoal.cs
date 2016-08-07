@@ -18,7 +18,7 @@ public class InteractGoal : Goal
 
     private void IsInteracted(InteractEvent e)
     {
-        if (TargetName.Contains(e.Source))
+        if (TargetName.Contains(e.Source) && IsListening)
         {
             Satisfy();
         }

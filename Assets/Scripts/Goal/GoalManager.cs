@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class GoalManager : MonoBehaviour
 {
-    private Stack<Goal> PremadeList = new Stack<Goal>();
-    private Stack<Goal> BorrowedList = new Stack<Goal>();
-
+    private Queue<Goal> PremadeList = new Queue<Goal>();
+    private Queue<Goal> BorrowedList = new Queue<Goal>();
+    private Queue<Goal> HiddenList = new Queue<Goal>();
 	public GameObject Test;
 
     [SerializeField]
@@ -15,15 +16,37 @@ public class GoalManager : MonoBehaviour
     private void Update()
     {
         LastAddedGoal += Time.deltaTime;
-        if(LastAddedGoal > 5 && BorrowedList.Count > 0)
+        if(LastAddedGoal > 5 && PremadeList.Count > 0)
         {
-            Goal oTest = BorrowedList.Pop();
+            Goal oTest = PremadeList.Dequeue();
+            oTest.IsListening = true;
             AddNewGoal(oTest);
             LastAddedGoal = 0;
         }
     }
+    #region GenerateGoal
     private void GeneratePremadeGoal()
     {
+        //Load via text file
+        TextAsset txtPremadeGoal = Resources.Load<TextAsset>("InteractGoals");
+        string txtGoals = txtPremadeGoal.text;
+        string[] asGoals = txtGoals.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+        foreach(string sGoal in asGoals)
+        {
+            string[] sData = sGoal.Split(',');
+            if(sData.Length == 2)
+            {
+                InteractGoal oPremadeGoal = new InteractGoal(sData[1])
+                {
+                    completed = false,
+                    pointValue = UnityEngine.Random.Range(1, 1000),
+                    goalText = sData[0] + " " + sData[1],
+                    IsListening = false
+                };
+                oPremadeGoal.OnSatisfied += GoalSatified;
+                PremadeList.Enqueue(oPremadeGoal);
+            }
+        }
 
     }
 
@@ -35,16 +58,25 @@ public class GoalManager : MonoBehaviour
             InteractGoal oBorrowedGoal = new InteractGoal(oBorrowedPrefab.name)
             {
                 completed = false,
-                pointValue = Random.Range(1, 1000),
-                goalText = "Interact with " + oBorrowedPrefab.name
+                pointValue = UnityEngine.Random.Range(1, 1000),
+                goalText = "Interact with " + oBorrowedPrefab.name,
+                IsListening = false
             };
             oBorrowedGoal.OnSatisfied += GoalSatified;
-            BorrowedList.Push(oBorrowedGoal);
+            BorrowedList.Enqueue(oBorrowedGoal);
         }
         
     }
 
-	private void GoalSatified (Goal a_oGoal)
+    private void GenerateHiddenGoal()
+    {
+
+        //So we want to generate somethingg based off of a function
+        //NeverMove
+        
+    }
+    #endregion
+    private void GoalSatified (Goal a_oGoal)
     { 
 		a_oGoal.OnSatisfied -= GoalSatified; //shouldn't error since there's no other way it can get here
         CompleteGoal(a_oGoal);
@@ -158,7 +190,8 @@ public class GoalManager : MonoBehaviour
 	{
 		AddNewGoal (mainGoal);
         GenerateBorrowedGoal();
-
+        GeneratePremadeGoal();
+        GenerateHiddenGoal();
     }
 
 	public int TallyCompletedPoints ()

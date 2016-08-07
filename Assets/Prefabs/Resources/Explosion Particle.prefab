@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 468426}
   - 33: {fileID: 3322120}
   - 65: {fileID: 6532806}
-  - 23: {fileID: 2327688}
   - 54: {fileID: 5404340}
+  - 23: {fileID: 2327688}
   - 114: {fileID: 11437908}
   m_Layer: 0
   m_Name: Explosion Particle
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeAlive: 0
   Body: {fileID: 5404340}
+  Render: {fileID: 2327688}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
