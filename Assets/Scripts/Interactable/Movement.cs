@@ -309,13 +309,13 @@ public static class Movement
 		//Stalk from afar
 		else if (dist > shyness * 2)
 		{
-			calico.AddForce (dir * calico.mass * 2);
+			calico.AddForce (dir * calico.mass * shyness * 10);
 		}
 		//Pounce in the sweet spot
 		else
 		{
 			dir.y++;
-			calico.AddForce (dir * calico.mass * shyness * 20);
+			calico.AddForce (dir * calico.mass * shyness * 25);
 		}
 	}
 
