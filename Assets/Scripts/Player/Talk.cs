@@ -58,17 +58,22 @@ public class Talk : MonoBehaviour
 				cursorRect.localScale = Vector3.one * (2 - lerp) / 2;
 			}
 
-
-
 			//Run Talk Script if player is interacting
 			if (Input.GetKeyUp ("e") || Input.GetMouseButtonDown (0))
 			{
-                GoalEvents.Instance.Raise(new TalkEvent());
+				GoalEvents.Instance.Raise (new TalkEvent ());
 				//Talk Here;
 				GameObject goTarget = rcHit.collider.gameObject;
 
 				//tell the object to follow
 				InteractableObject.Follow (goTarget);
+			}
+			//Otherwise, indicate that it has been seen
+			else
+			{
+				var seen = rcHit.collider.gameObject.GetComponent<TrackableObject> ();
+				if (seen)
+					seen.Seen ();
 			}
 		} else if (cursor)
 		{

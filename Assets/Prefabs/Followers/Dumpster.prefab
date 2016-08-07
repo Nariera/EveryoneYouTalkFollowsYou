@@ -13,6 +13,7 @@ GameObject:
   - 65: {fileID: 6599354}
   - 54: {fileID: 5441838}
   - 114: {fileID: 11448452}
+  - 114: {fileID: 11439234}
   m_Layer: 0
   m_Name: Dumpster
   m_TagString: Untagged
@@ -92,6 +93,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.2500033, y: 2.1661816, z: 1.9880093}
   m_Center: {x: 5.3238e-41, y: 0.83560264, z: -0.07246345}
+--- !u!114 &11439234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c094bde807be8cd4985fd47d09bf1d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11448452
 MonoBehaviour:
   m_ObjectHideFlags: 1

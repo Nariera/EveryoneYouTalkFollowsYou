@@ -54,6 +54,8 @@ public class GoalManager : MonoBehaviour
 		InteractGoal iGoal = go.AddComponent<InteractGoal> ();
 		iGoal.TargetName = "";
 		iGoal.OnSatisfied += GoalSatisfied;
+		iGoal.OnFailed += GoalFailed;
+		iGoal.OnReveal += AddNewGoal;
 
 		return iGoal;
 	}
@@ -65,11 +67,18 @@ public class GoalManager : MonoBehaviour
 		a_oGoal.OnSatisfied -= GoalSatisfied; //shouldn't error since there's no other way it can get here
 		CompleteGoal (a_oGoal);
 	}
+
+	void GoalFailed (Goal goal)
+	{
+		goal.OnFailed -= GoalFailed;
+		CancelGoal (goal);
+	}
     
 
 	//Static ref. -P
 	public static GoalManager gm;
 
+	public List<Goal> allGoals = new List<Goal> ();
 	public List<Goal> activeGoals = new List<Goal> ();
 	public List<Goal> cancelledGoals = new List<Goal> ();
 	public List<Goal> completedGoals = new List<Goal> ();
@@ -188,11 +197,19 @@ public class GoalManager : MonoBehaviour
 
 	void Start ()
 	{
+		//Prep for premade goals
+		foreach (var t in FindObjectsOfType<Goal>())
+		{
+			allGoals.Add (t);
+			t.OnSatisfied += GoalSatisfied;
+			t.OnFailed += GoalFailed;
+			t.OnReveal += AddNewGoal;
+		}
+
 		AddNewGoal (mainGoal);
 		//GenerateBorrowedGoal ();
-		GeneratePremadeGoal ();
-		GenerateHiddenGoal ();
-
+		//GeneratePremadeGoal ();
+		//GenerateHiddenGoal ();
 	}
 
 	public int TallyCompletedPoints ()
