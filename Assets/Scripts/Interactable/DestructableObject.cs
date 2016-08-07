@@ -72,8 +72,11 @@ public sealed class DestructableObject : MonoBehaviour
 			if (audio)
 				audio.Play ();
 			var particle =	GetComponentInChildren<ParticleSystem> ();
-			particle.transform.SetParent (ParticleManager.pm.transform);
-			particle.Play ();
+			if (particle)
+			{
+				particle.transform.SetParent (ParticleManager.pm.transform);
+				particle.Play ();
+			}
 
 			if (destroyed != null)
 				destroyed.Invoke ();
