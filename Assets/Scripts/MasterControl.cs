@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class DogEvent : GoalEvent
 {
@@ -83,6 +84,7 @@ public sealed class MasterControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider a_oEnter)
     {
+        EndGame();
         if (a_oEnter.gameObject.tag == "Player" && !Triggered && Usable)
         {
             if (MainGoal != null)
@@ -247,6 +249,7 @@ public sealed class MasterControl : MonoBehaviour
         Physics.gravity = new Vector3(0, CONSECRATION_GRAVITY, 0);
     }
 
+    public Text abd;
     private void EndGame()
     {
         
