@@ -8,6 +8,8 @@ public class TextTyper : MonoBehaviour
 	public float letterPause = 0.4f;
 	public AudioClip[] keySounds;
 
+	public Text otherTextToClose;
+
 	string message;
 	Text textComp;
 
@@ -18,6 +20,8 @@ public class TextTyper : MonoBehaviour
 		if (Input.anyKeyDown && !typing)
 		{
 			TypeText ();
+
+			otherTextToClose.enabled = false;
 		}
 	}
 
@@ -37,6 +41,8 @@ public class TextTyper : MonoBehaviour
 	IEnumerator TextCoroutine ()
 	{
 		typing = true;
+
+		yield return new WaitForSeconds (1);
 
 		foreach (char letter in message.ToCharArray())
 		{

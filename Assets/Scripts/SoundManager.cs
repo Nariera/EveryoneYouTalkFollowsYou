@@ -23,9 +23,10 @@ public class SoundManager : MonoBehaviour
 
 	}
 
-	public void PlaySingle (AudioClip clip)
+	public void PlaySingle (AudioClip clip, float volume = 1)
 	{
 		efxSource.clip = clip;
+		efxSource.volume = volume;
 		efxSource.Play ();
 	}
 

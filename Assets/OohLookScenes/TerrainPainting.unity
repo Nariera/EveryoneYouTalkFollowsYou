@@ -10544,10 +10544,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 2355628, guid: 7d8634cd1c036184bb95e36cd12a3355, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: cffc92b09c0881643b556f1b1f5bc4fc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d8634cd1c036184bb95e36cd12a3355, type: 2}
   m_IsPrefabParent: 0
@@ -19345,11 +19341,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 114
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479702, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMin.x
@@ -19397,51 +19393,51 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22403828, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22457796, guid: dd83bbe0ab9936749a383a69d86be61c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 21
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -19484,7 +19480,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlesPrefab: {fileID: 155022, guid: 504b3eb837a0e24409df533705d5b294, type: 2}
   meshGroup: {fileID: 1436994369}
-  SomeBox: {fileID: 0}
 --- !u!4 &1461539440
 Transform:
   m_ObjectHideFlags: 0
@@ -24830,7 +24825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b798de54d1759b841ad13d4b6dcae10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Body: {fileID: 0}
   Durability: 50
 --- !u!114 &1862399901
 MonoBehaviour:

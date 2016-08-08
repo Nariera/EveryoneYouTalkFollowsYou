@@ -11,8 +11,8 @@ public class Talk : MonoBehaviour
 	float lerp = 0;
 	GameObject lastObjHit;
 
-    public AudioClip failToClickClip;
-    public AudioClip successClickClip;
+	public AudioClip failToClickClip;
+	public AudioClip successClickClip;
 
 	//Max distance of interaction
 	private const float MAX_INTERACT_DISTANCE = 8.0f;
@@ -68,19 +68,19 @@ public class Talk : MonoBehaviour
 				//Talk Here;
 				GameObject goTarget = rcHit.collider.gameObject;
 
-                if (!InteractableObject.Get(rcHit.collider.gameObject).isActiveAndEnabled) { 
+				if (!InteractableObject.Get (rcHit.collider.gameObject).isActiveAndEnabled)
+				{ 
 
-                    if (successClickClip != null)
-                        SoundManager.instance.PlaySingle(successClickClip);
-                }
-                else
-                {
-                    if (failToClickClip != null)
-                        SoundManager.instance.PlaySingle(failToClickClip);
-                }
+					if (successClickClip != null)
+						SoundManager.instance.PlaySingle (successClickClip);
+				} else
+				{
+					if (failToClickClip != null)
+						SoundManager.instance.PlaySingle (failToClickClip, 0.2f);
+				}
 
-                //tell the object to follow
-                InteractableObject.Follow (goTarget);
+				//tell the object to follow
+				InteractableObject.Follow (goTarget);
 			}
 			//Otherwise, indicate that it has been seen
 			else
@@ -99,11 +99,11 @@ public class Talk : MonoBehaviour
 			cursorRect.localScale = Vector3.one * (2 - lerp) / 2;
 			cursor.color = Color.white;
 
-            if (Input.GetKeyUp("e") || Input.GetMouseButtonDown(0))
-            {
-                if (failToClickClip != null)
-                    SoundManager.instance.PlaySingle(failToClickClip);
-            }
-        }
+//			if (Input.GetKeyUp ("e") || Input.GetMouseButtonDown (0))
+//			{
+//				if (failToClickClip != null)
+//					SoundManager.instance.PlaySingle (failToClickClip);
+//			}
+		}
 	}
 }
