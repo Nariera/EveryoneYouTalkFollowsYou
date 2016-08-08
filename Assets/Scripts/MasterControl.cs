@@ -84,7 +84,6 @@ public sealed class MasterControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider a_oEnter)
     {
-        EndGame();
         if (a_oEnter.gameObject.tag == "Player" && !Triggered && Usable)
         {
             if (MainGoal != null)
@@ -101,6 +100,8 @@ public sealed class MasterControl : MonoBehaviour
             }
             Triggered = true;
         }
+
+        EndGame();
     }
 
     private void Update()
