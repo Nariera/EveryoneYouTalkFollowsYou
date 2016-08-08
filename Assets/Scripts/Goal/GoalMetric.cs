@@ -110,6 +110,7 @@ public class GoalMetric : MonoBehaviour
 				GoalManager.gm.AddNewGoal (oGoal);
 				AddTimer (Time.time + TIMER_DELAY, oGoal);
 				DogDisqualified = true;
+                GoalEvents.Instance.Raise(new DogEvent());
 			}
 		}
 

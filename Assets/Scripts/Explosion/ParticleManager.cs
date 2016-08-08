@@ -29,9 +29,6 @@ public class ParticleManager : MonoBehaviour
         if(renderer != null)
         {
             shape.meshRenderer = renderer;
-        } else
-        {
-            shape.meshRenderer = SomeBox.GetComponent<MeshRenderer>();
         }
 	}
 

@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 
+public class DogEvent : GoalEvent
+{
+
+}
+
 public sealed class MasterControl : MonoBehaviour
 {
-    private const bool DEBUG_COMMAND = true;
+    private const bool DEBUG_COMMAND = false;
 
     private const float DESTRUCTION_DELAY = 0.05f;
 
     private const float VORTEX_XZ_MIN = -450f;
     private const float VORTEX_XZ_MAX = 450f;
     private const float VORTEX_Y_MIN = 0f;
-    private const float VORTEX_Y_MAX = 10f;
+    private const float VORTEX_Y_MAX = 50f;
     private const float VORTEX_STRENGTH = 10f;
 
     private const float CONSECRATION_GRAVITY = 10f;
@@ -42,6 +47,7 @@ public sealed class MasterControl : MonoBehaviour
     private bool ConsecrationActive = false;
     private float ConsecrationTime = 0.0f;
     private Vector3 PreviousGravity = Vector3.zero;
+
     public bool Usable
     {
         get
@@ -51,8 +57,14 @@ public sealed class MasterControl : MonoBehaviour
     }
     [SerializeField]
     private bool _Usable = true;
+
+    [SerializeField]
+    private Goal MainGoal;
+    private bool Triggered = false;
+    private bool SuicideTriggered = false;
     private void Start()
     {
+        GoalEvents.Instance.AddListener<DogEvent>(DogEnd);
         if (World == null)
         {
             World = GameObject.Find("World Objects");
@@ -61,10 +73,37 @@ public sealed class MasterControl : MonoBehaviour
         {
             Player = GameObject.FindGameObjectWithTag("Player");
         }
+        
+    }
+
+    private void DogEnd(DogEvent e)
+    {
+        EndGame();
+    }
+
+    private void OnTriggerEnter(Collider a_oEnter)
+    {
+        if (a_oEnter.gameObject.tag == "Player" && !Triggered && Usable)
+        {
+            if (MainGoal != null)
+            {
+                GoalManager.gm.CompleteGoal(MainGoal);
+            }
+            int rand = Random.Range(0, 2);
+            switch (rand)
+            {
+                case 0: BlowEverythingUp(); break;
+                case 1: EnableVortex(); break;
+                case 2: Consecration(); break;
+                default: break;
+            }
+            Triggered = true;
+        }
     }
 
     private void Update()
     {
+        EndGame();
         if (DEBUG_COMMAND && Usable)
         {
             if (Input.GetKeyUp("k"))
@@ -80,6 +119,20 @@ public sealed class MasterControl : MonoBehaviour
                 Consecration();
             }
         }
+        if (Usable)
+        {
+            float PlayerYAxis = Player.transform.position.y;
+            if (PlayerYAxis < -100 && !SuicideTriggered)
+            {
+                SuicideTriggered = true;
+                Goal Suicide = gameObject.AddComponent<Goal>();
+                Suicide.goalText = "Don't you hate infinite falling glitch?";
+                Suicide.pointValue = 0;
+                GoalManager.gm.AddNewGoal(Suicide);
+                GoalManager.gm.CompleteGoal(Suicide);
+            }
+        }
+
     }
 
     private void FixedUpdate()
@@ -105,7 +158,7 @@ public sealed class MasterControl : MonoBehaviour
             {
                 Physics.gravity = PreviousGravity;
                 ConsecrationActive = false;
-                
+
             }
         }
     }
@@ -192,6 +245,11 @@ public sealed class MasterControl : MonoBehaviour
         PreviousGravity = Physics.gravity;
         ConsecrationTime = 0.0f;
         Physics.gravity = new Vector3(0, CONSECRATION_GRAVITY, 0);
+    }
+
+    private void EndGame()
+    {
+        
     }
 }
 
