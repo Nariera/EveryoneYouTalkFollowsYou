@@ -17952,7 +17952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   completed: 0
   cancelled: 0
-  goalText: That crowd is too trashy for your tastes
+  goalText: That crowd is too trashy for you
   pointValue: 1
   associatedUIObject: {fileID: 0}
   specificTargets:
